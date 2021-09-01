@@ -54,7 +54,7 @@ a:hover {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background: url("img/banner.jpg");
+  background: url("img/3.jpg");
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
@@ -328,10 +328,15 @@ footer #right-footer {
 }
 
 footer #social-media-footer a .fa-facebook,
-footer #social-media-footer a .fa-youtube,
-footer #social-media-footer a .fa-github {
+footer #social-media-footer a .fa-linkedin,
+footer #social-media-footer a .fa-pinterest,
+footer #social-media-footer a .fa-twitter,
+footer #social-media-footer a .fa-instagram
+
+ {
   color: white;
   transition: 0.4s;
+  font-size: 36px;
 }
 
 footer #social-media-footer ul {

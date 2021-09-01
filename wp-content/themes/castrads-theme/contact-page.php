@@ -1,4 +1,10 @@
-<?php get_header(); ?>
+<?php 
+
+/**
+ * Template Name : Contact
+ */
+
+get_header(); ?>
 
 <section id="section-source">
     <h3> Did you know we offer design consultations?</h3>

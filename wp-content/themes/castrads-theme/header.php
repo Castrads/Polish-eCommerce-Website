@@ -20,9 +20,12 @@
                 </a>
             </div>
             <?php wp_nav_menu(); ?>
-            <!-- <div class="searchbox-slide-menu">
+            <div class="searchbox">
                 <?php get_search_form(); ?>
-            </div> -->
+            </div>
+            <!-- <div id="search-icon">
+                    <i class="fas fa-search"></i>
+               </div> -->
             <div class="menu-toggle">
                 <div class="hamburger"></div>
             </div>
