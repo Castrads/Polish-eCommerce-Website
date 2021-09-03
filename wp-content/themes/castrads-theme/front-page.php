@@ -7,11 +7,24 @@
 get_header(); ?>
 
 <div id="banner">
+    <h1 class="banner-heading">WE MAKE CAST IRON RADIATORS</h1>
+    <h2 class="banner-heading">Designed for the modern home</h2>
+    <div class=banner-menu>
+        <a href="<?php echo site_url('/products'); ?>">
+            Shop products
+        </a>
+        <a href="<?php echo site_url('/inspiration'); ?>">
+            Order a brochure
+        </a>
+        <a href="<?php echo site_url('/inspiration'); ?>">
+            Book a consultation
+        </a>
+    </div>
 </div>
 
 <div class="container">
-        <h2 class="section-heading">How to Heat</h2>
-        <p>Photo-filled design guides with heating advice based on real-life case studies.</p>
+    <h2 class="section-heading">How to Heat</h2>
+    <p>Photo-filled design guides with heating advice based on real-life case studies.</p>
     <section>
 
         <?php
