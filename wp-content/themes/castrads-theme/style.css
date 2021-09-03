@@ -62,11 +62,21 @@ a:hover {
   color: white;
 }
 
-#banner h3 {
-  background: black;
-  border-radius: 8px;
-  padding: 0 24px;
-  font-size: 24px;
+
+/* banner heading */
+
+.banner-heading{
+  color: white;
+}
+
+.banner-menu {
+  display: flex;
+}
+
+.banner-menu a{
+  color: white;
+  margin: 35px 45px;
+  font-size: 20px;
 }
 
 /* search box */
