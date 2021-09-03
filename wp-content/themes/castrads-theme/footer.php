@@ -6,10 +6,10 @@
             <p>
             <ul>
                 <li>
-                    <a href="<?php echo site_url('/product'); ?>">Product</a>
+                    <a href="<?php echo site_url('/products'); ?>">Products</a>
                 </li>
                 <li>
-                    <a href="<?php echo site_url('/samples'); ?>">Samples</a>
+                    <a href="<?php echo site_url('/colorsamples'); ?>">Color Samples</a>
                 </li>
                 <li>
                     <a href="<?php echo site_url('/resources'); ?>">Resources</a>
