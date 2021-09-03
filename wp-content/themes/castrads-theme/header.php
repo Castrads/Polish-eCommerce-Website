@@ -14,18 +14,19 @@
     <header class="header">
 
         <nav class="main-navigation">
+            <?php wp_nav_menu(array('theme_location' => 'left-menu')); ?>
             <div id="logo-img">
                 <a href="<?php echo site_url(''); ?>">
                     <img src=" <?php echo get_template_directory_uri(); ?>/img/logo.svg" alt="Logo">
                 </a>
             </div>
-            <?php wp_nav_menu(); ?>
+            <?php wp_nav_menu(array('theme_location' => 'right-menu')); ?>
             <div class="searchbox">
                 <?php get_search_form(); ?>
             </div>
             <!-- <div id="search-icon">
-                    <i class="fas fa-search"></i>
-               </div> -->
+            <i class="fas fa-search"></i>
+       </div> -->
             <div class="menu-toggle">
                 <div class="hamburger"></div>
             </div>

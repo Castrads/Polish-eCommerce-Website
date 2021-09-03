@@ -10,10 +10,8 @@ get_header(); ?>
 </div>
 
 <div class="container">
-    <a href="<?php echo site_url('/blog'); ?>">
         <h2 class="section-heading">How to Heat</h2>
         <p>Photo-filled design guides with heating advice based on real-life case studies.</p>
-    </a>
     <section>
 
         <?php

@@ -12,20 +12,19 @@ function gt_setup()
 
 add_action('wp_enqueue_scripts', 'gt_setup');
 
-// menus location 
+//menus location 
 
-add_theme_support('menus'); 
+// add_theme_support('menus'); 
 
-function register_menus()
-{
-
+function register_my_menus() {
     register_nav_menus(
-        array(
-            'theme_location' => 'main-menu',
-            'menu_id'        => 'primary-menu',
-        )
+      array(
+        'left-menu' => __( 'Left Menu' ),
+        'right-menu' => __( 'Right Menu' )
+      )
     );
-}
+  }
+  add_action( 'init', 'register_my_menus' );
 
 add_action('init', 'register_menus'); 
 
@@ -68,5 +67,15 @@ function gt_custom_post_type()
 }
 
 add_action('init', 'gt_custom_post_type');
+
+
+//* Add support for custom header
+add_theme_support( 'custom-header', array(
+    'width'           => 500,
+    'height'          => 300,
+    'header-selector' => '.site-title a',
+    'header-text'     => false,
+    'flex-height'     => true,
+) );
 
 
