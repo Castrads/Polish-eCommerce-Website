@@ -69,10 +69,12 @@ get_header(); ?>
     <h2 class="section-heading">Visit a showroom</h2>
 
     <section id="section-source">
-        <h3> for tailored advice</h3>
+   
+    
+
+        <h3><?php the_field('page_title')?></h3>
         <p>
-            Castrads was established in Manchester, England in 2006. In 2012 we moved to our HQ at 1 Kenwood Road where we manufacture our custom-built, custom-finished radiators. It’s also where our design and creative teams are based.
-            Inspired by the past but always looking to the future, our products combine classic form and enduring functionality with the most up-to-date technology. Visit our factory showroom to see exactly what we do.
+        <?php the_field('description')?>
         </p>
         <a href="#" class="btn-readmore">Read more</a>
     </section>

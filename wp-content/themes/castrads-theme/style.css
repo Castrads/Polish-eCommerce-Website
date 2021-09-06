@@ -83,7 +83,140 @@ a:hover {
 
 /* search box */
 
-#searchbox {
+.search {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  max-width: 300px;
+  height: 50px;
+  transform: translateX(140%) translateY(-50%);
+}
+.search__toggle:checked ~ .search__field {
+  width: calc(100% - 80px);
+  border-width: 2px;
+}
+.search__toggle:checked ~ .search__field .search__input::placeholder {
+  opacity: 1;
+}
+.search__toggle:checked ~ .search__field .search__close {
+  left: -25px;
+}
+.search__toggle:checked ~ .search__field .search__button {
+  right: 5px;
+  width: 35px;
+  height: 35px;
+  border-radius: 50px;
+}
+.search__toggle:checked ~ .search__field .search__button--toggle {
+  display: none;
+}
+.search__toggle:checked ~ .search__field .search__button--submit {
+  display: flex;
+}
+.search__close {
+  position: relative;
+  top: 50%;
+  left: 0;
+  transform: translateX(-50%);
+  transition: 0.3s;
+}
+.search__close::before, .search__close::after {
+  position: absolute;
+  display: block;
+  content: "";
+  width: 15px;
+  height: 3px;
+  background-color: #fff;
+}
+.search__close::before {
+  transform: rotate(45deg);
+}
+.search__close::after {
+  transform: rotate(-45deg);
+}
+.search__field {
+  position: absolute;
+  right: 0;
+  left: 50%;
+  width: 40px;
+  height: 45px;
+  border: 0px solid #fff;
+  border-radius: 50px;
+  transform: translateX(-50%);
+  transform-origin: right;
+  transition: 0.3s;
+}
+.search__input {
+  position: absolute;
+  left: 0;
+  box-sizing: border-box;
+  width: calc(100% - 40px);
+  height: 100%;
+  padding: 5px 15px;
+  color: white;
+  background-color: transparent;
+  border: 0;
+  outline: none;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+}
+.search__input::placeholder {
+  color: white;
+  opacity: 0;
+  transition: 0.3s;
+  transition-delay: 0.3s;
+}
+.search__label {
+  cursor: pointer;
+}
+.search__button {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  background-color: #fff;
+  border-radius: 5px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  transition: 0.3s;
+}
+.search__button--submit {
+  display: none;
+  border: 0;
+}
+.search__icon {
+  position: relative;
+  width: 19px;
+  height: 19px;
+}
+.search__icon::before {
+  display: block;
+  content: "";
+  width: 12px;
+  height: 12px;
+  background-color: transparent;
+  border: 2px solid black;
+  border-radius: 50px;
+}
+.search__icon::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  display: block;
+  content: "";
+  width: 8px;
+  height: 2px;
+  background-color: black;
+  transform: rotate(45deg);
+  transform-origin: right;
+}
+
+/* #searchbox {
   position: fixed;
   right: 0;
   top: 24px;
@@ -119,11 +252,11 @@ a:hover {
   background: #fc7267 url("img/search-icon.png");
   background-position: center;
   background-repeat: no-repeat;
-}
+} */
 
 /*navigation */
 
-nav {
+.main-navigation {
   height: 80px;
   background: #202125;
   width: 100%;
@@ -136,26 +269,32 @@ nav {
   padding: 0 16px 0 0;
   box-sizing: border-box;
   z-index: 100;
+  justify-content: center;
 }
 
-nav a {
-  padding: 0 32px;
+.menu-right-menu-container,
+.menu-left-menu-container{
+  width: 25%;
+}
+
+.main-navigation a {
   color: white;
   transition: 0.4s;
 }
 
-nav a:hover {
+.main-navigation a:hover {
   text-decoration: none;
   color: #897e4c;
 }
 
-nav ul {
+.main-navigation ul {
   display: flex;
   list-style: none;
   justify-content: space-around;
   align-items: center;
   height: 100%;
   margin: 0;
+  padding: 0;
 }
 
 .active {
@@ -184,7 +323,8 @@ nav ul {
   align-items: center;
 }
 
-#search-icon {
+
+/* #search-icon {
   color: white;
   padding: 0 32px;
   cursor: pointer;
@@ -193,7 +333,7 @@ nav ul {
 
 #search-icon:hover {
   color: white;
-}
+} */
 
 /* slideout */
 
@@ -740,7 +880,7 @@ footer #social-media-footer a .fa-instagram {
 @media (min-width: 1200px) {
   .container {
     width: 85%;
-    padding-left: 85px;
+    padding-left: 111px;
   }
   .menu-toggle {
     display: none;
