@@ -56,7 +56,7 @@ get_header(); ?>
                     <p>
                         <?php echo wp_trim_words(get_the_excerpt(), 30); ?>
                     </p>
-                    <a href="<?php the_permalink(); ?>" class="btn-readmore">Read more</a>
+                    <!-- <a href="<?php the_permalink(); ?>" class="btn-readmore">Read more</a> -->
                 </div>
             </div>
 
@@ -66,17 +66,20 @@ get_header(); ?>
 
     </section>
 
-    <h2 class="section-heading">Visit a showroom</h2>
+  <!-- showrooms -->
 
-    <section id="section-source">
-   
-    
+  <h2 class="section-heading">Visit a showroom</h2>
 
-        <h3><?php the_field('page_title')?></h3>
-        <p>
-        <?php the_field('description')?>
-        </p>
-        <a href="#" class="btn-readmore">Read more</a>
-    </section>
+<section id="section-source">
+
+
+
+    <h3><a href=""><?php the_field('page_title') ?></a></h3>
+    <p>
+
+        <?php the_field('description') ?>
+    </p>
+    <!-- <a href="#" class="btn-readmore">Read more</a> -->
+</section>
 </div>
 <?php get_footer(); ?>
