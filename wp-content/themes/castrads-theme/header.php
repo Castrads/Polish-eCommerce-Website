@@ -21,9 +21,28 @@
                 </a>
             </div>
             <?php wp_nav_menu(array('theme_location' => 'right-menu')); ?>
-            <div class="searchbox">
+
+            <form class="search">
+                <input type="checkbox" id="toggleSearch" class="search__toggle" hidden />
+                <div class="search__field">
+                    <label for="toggleSearch" class="search__label">
+                        <span class="search__close"></span>
+                    </label>
+                    <input type="text" class="search__input" placeholder="What are you looking for?" />
+                    <label for="toggleSearch" class="search__label">
+                        <div class="search__button">
+                            <div class="search__icon search__button--toggle"></div>
+                        </div>
+                        <button class="search__button search__button--submit">
+                            <div class="search__icon"></div>
+                        </button>
+                    </label>
+                </div>
+            </form>
+
+            <!-- <div class="searchbox">
                 <?php get_search_form(); ?>
-            </div>
+            </div> -->
             <!-- <div id="search-icon">
             <i class="fas fa-search"></i>
        </div> -->
