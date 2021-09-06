@@ -16,15 +16,16 @@ add_action('wp_enqueue_scripts', 'gt_setup');
 
 // add_theme_support('menus'); 
 
-function register_my_menus() {
+function register_my_menus()
+{
     register_nav_menus(
-      array(
-        'left-menu' => __( 'Left Menu' ),
-        'right-menu' => __( 'Right Menu' )
-      )
+        array(
+            'left-menu' => __('Left Menu'),
+            'right-menu' => __('Right Menu')
+        )
     );
-  }
-  add_action( 'init', 'register_my_menus' );
+}
+add_action('init', 'register_my_menus');
 
 
 
@@ -69,13 +70,35 @@ function gt_custom_post_type()
 add_action('init', 'gt_custom_post_type');
 
 
-//* Add support for custom header
-add_theme_support( 'custom-header', array(
-    'width'           => 500,
-    'height'          => 300,
-    'header-selector' => '.site-title a',
-    'header-text'     => false,
-    'flex-height'     => true,
-) );
 
+/**
+ * Take control on the search form
+ *
+ */
 
+function my_search_form($form)
+{
+    $form = '
+    <form class="search"  method="get"  action="' . home_url('/') . '" >
+                <input type="checkbox" id="toggleSearch" class="search__toggle" hidden  />
+              
+                <div class="search__field">
+                    <label for="toggleSearch" class="search__label">
+                        <span class="search__close"></span>
+                    </label>
+                    <input class="search__input"  type="search" name="s" placeholder="Search Here ..." value="' . get_search_query() . '"/>
+                    <label for="toggleSearch" class="search__label">
+                        <div class="search__button">
+                            <div class="search__icon search__button--toggle"></div>
+                        </div>
+                        <button class="search__button search__button--submit" type="submit"  id="search-btn">
+                            <div class="search__icon"></div>
+                        </button>
+                    </label>
+                </div>
+            </form>';
+
+    return $form;
+}
+
+add_filter('get_search_form', 'my_search_form');
