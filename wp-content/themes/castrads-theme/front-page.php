@@ -66,20 +66,12 @@ get_header(); ?>
 
     </section>
 
-  <!-- showrooms -->
+    <!-- showrooms -->
+    <div class='showroom'>
+        <h2 class="section-heading">Visit a showroom</h2>
+        <?php get_template_part('template-parts/home-showroom'); ?>
+    </div>
 
-  <h2 class="section-heading">Visit a showroom</h2>
 
-<section id="section-source">
-
-
-
-    <h3><a href=""><?php the_field('page_title') ?></a></h3>
-    <p>
-
-        <?php the_field('description') ?>
-    </p>
-    <!-- <a href="#" class="btn-readmore">Read more</a> -->
-</section>
 </div>
 <?php get_footer(); ?>

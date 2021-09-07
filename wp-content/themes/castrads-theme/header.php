@@ -23,7 +23,8 @@
             <?php wp_nav_menu(array('theme_location' => 'right-menu')); ?>
 
             <?php get_search_form(); ?>
-
+               
+            
             <div class="menu-toggle">
                 <div class="hamburger"></div>
             </div>
