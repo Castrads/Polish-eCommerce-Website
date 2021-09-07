@@ -6,6 +6,7 @@ Description: the official theme for Castrads
 @import url("https://fonts.googleapis.com/css?family=Rokkitt%3A100%2C200%2C300%2Cregular%2C500%2C600%2C700%2C800%2C900%7CRoboto%3A100%2C100italic%2C300%2C300italic%2Cregular%2Citalic%2C500%2C500italic%2C700%2C700italic%2C900%2C900italic%7CRoboto&amp;subset=vietnamese%2Clatin%2Clatin-ext%2Ccyrillic-ext%2Ccyrillic%2Cgreek-ext%2Cgreek&amp;display=swap");
 
 
+
 body {
   font-family: "Rokkitt", sans-serif;
   margin: 0;
@@ -216,43 +217,7 @@ a:hover {
   transform-origin: right;
 }
 
-/* #searchbox {
-  position: fixed;
-  right: 0;
-  top: 24px;
-  width: 500px;
-  pointer-events: none;
-  z-index: 50;
-  transition: 0.4s;
-}
 
-#searchbox input {
-  height: 32px;
-  width: 100%;
-}
-
-#searchbox #search-btn,
-#slideout-menu #search-btn {
-  height: 32px;
-  width: 48px;
-  background: white url("img/search-icon.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  position: absolute;
-  right: 0;
-  top: 0;
-  box-shadow: initial;
-  transition: 0.4s;
-  cursor: pointer;
-  border: 1px solid white;
-}
-
-#searchbox #search-btn:hover,
-#slideout-menu #search-btn:hover {
-  background: #fc7267 url("img/search-icon.png");
-  background-position: center;
-  background-repeat: no-repeat;
-} */
 
 /*navigation */
 
@@ -274,8 +239,9 @@ a:hover {
 
 .menu-right-menu-container,
 .menu-left-menu-container,
-.menu-right-menu-polish,
-.menu-left-menu-polish{
+.menu-left-menu-polish-container,
+.menu-right-menu-polish-container
+{
   width: 25%;
 }
 
@@ -325,17 +291,6 @@ a:hover {
   align-items: center;
 }
 
-
-/* #search-icon {
-  color: white;
-  padding: 0 32px;
-  cursor: pointer;
-  transition: 0.4s;
-}
-
-#search-icon:hover {
-  color: white;
-} */
 
 /* slideout */
 
