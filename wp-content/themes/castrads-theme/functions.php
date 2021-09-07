@@ -16,16 +16,15 @@ add_action('wp_enqueue_scripts', 'gt_setup');
 
 // add_theme_support('menus'); 
 
-function register_my_menus()
-{
+function register_my_menus() {
     register_nav_menus(
-        array(
-            'left-menu' => __('Left Menu'),
-            'right-menu' => __('Right Menu')
-        )
+      array(
+        'left-menu' => __( 'Left Menu' ),
+        'right-menu' => __( 'Right Menu' )
+      )
     );
-}
-add_action('init', 'register_my_menus');
+  }
+  add_action( 'init', 'register_my_menus' );
 
 
 
@@ -71,15 +70,15 @@ add_action('init', 'gt_custom_post_type');
 
 
 
-/**
- * Take control on the search form
- *
- */
 
-function my_search_form($form)
-{
+/**
+* Take control on the search form
+*
+*/
+
+function my_search_form( $form ) {
     $form = '
-    <form class="search"  method="get"  action="' . home_url('/') . '" >
+    <form class="search"  method="get"  action="' . home_url( '/' ) . '" >
                 <input type="checkbox" id="toggleSearch" class="search__toggle" hidden  />
               
                 <div class="search__field">
@@ -97,8 +96,8 @@ function my_search_form($form)
                     </label>
                 </div>
             </form>';
-
+    
     return $form;
-}
-
-add_filter('get_search_form', 'my_search_form');
+    }
+    
+    add_filter( 'get_search_form', 'my_search_form' );
