@@ -7,6 +7,7 @@ function gt_setup()
     // wp_enqueue_style('google-fonts', '//fonts.googleapis.com/css?family=Roboto|Roboto+Condensed|Roboto+Slab');
     wp_enqueue_style('fontawesome', '//use.fontawesome.com/releases/v5.1.0/css/all.css');
     wp_enqueue_style('style', get_stylesheet_uri());
+    wp_enqueue_style('normalize', get_template_directory_uri() . '/css/normalize.css');
     wp_enqueue_script("main", get_theme_file_uri('/js/main.js'), NULL, microtime(), true);
 }
 
@@ -16,15 +17,16 @@ add_action('wp_enqueue_scripts', 'gt_setup');
 
 // add_theme_support('menus'); 
 
-function register_my_menus() {
+function register_my_menus()
+{
     register_nav_menus(
-      array(
-        'left-menu' => __( 'Left Menu' ),
-        'right-menu' => __( 'Right Menu' )
-      )
+        array(
+            'left-menu' => __('Left Menu'),
+            'right-menu' => __('Right Menu')
+        )
     );
-  }
-  add_action( 'init', 'register_my_menus' );
+}
+add_action('init', 'register_my_menus');
 
 
 
@@ -72,13 +74,14 @@ add_action('init', 'gt_custom_post_type');
 
 
 /**
-* Take control on the search form
-*
-*/
+ * Take control on the search form
+ *
+ */
 
-function my_search_form( $form ) {
+function my_search_form($form)
+{
     $form = '
-    <form class="search"  method="get"  action="' . home_url( '/' ) . '" >
+    <form class="search"  method="get"  action="' . home_url('/') . '" >
                 <input type="checkbox" id="toggleSearch" class="search__toggle" hidden  />
               
                 <div class="search__field">
@@ -96,8 +99,32 @@ function my_search_form( $form ) {
                     </label>
                 </div>
             </form>';
-    
+
     return $form;
-    }
-    
-    add_filter( 'get_search_form', 'my_search_form' );
+}
+
+add_filter('get_search_form', 'my_search_form');
+
+
+// remove from footer
+
+add_action('get_header', 'my_filter_head');
+
+function my_filter_head() {
+  remove_action('wp_head', '_admin_bar_bump_cb');
+}
+
+
+
+// define the gettext callback 
+function filter_gettext($translation, $text, $domain)
+{
+    // make filter magic happen here... 
+    return $translation;
+};
+
+// add the filter 
+add_filter('gettext', 'filter_gettext', 10, 3);
+
+
+
