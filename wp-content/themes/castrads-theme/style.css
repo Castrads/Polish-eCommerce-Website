@@ -4,12 +4,15 @@ Description: the official theme for Castrads
 */
 
 @import url("https://fonts.googleapis.com/css?family=Rokkitt%3A100%2C200%2C300%2Cregular%2C500%2C600%2C700%2C800%2C900%7CRoboto%3A100%2C100italic%2C300%2C300italic%2Cregular%2Citalic%2C500%2C500italic%2C700%2C700italic%2C900%2C900italic%7CRoboto&amp;subset=vietnamese%2Clatin%2Clatin-ext%2Ccyrillic-ext%2Ccyrillic%2Cgreek-ext%2Cgreek&amp;display=swap");
-@import "./normalize.css";
-
 
 body {
   font-family: "Rokkitt", sans-serif;
   margin: 0;
+}
+
+html {
+  margin-top: 28px !important;
+  height: 20px;
 }
 
 h1 {
@@ -64,10 +67,9 @@ a:hover {
   color: white;
 }
 
-
 /* banner heading */
 
-.banner-heading{
+.banner-heading {
   color: white;
 }
 
@@ -75,7 +77,7 @@ a:hover {
   display: flex;
 }
 
-.banner-menu a{
+.banner-menu a {
   color: white;
   margin: 35px 45px;
   font-size: 20px;
@@ -121,11 +123,12 @@ a:hover {
   transform: translateX(-50%);
   transition: 0.3s;
 }
-.search__close::before, .search__close::after {
+.search__close::before,
+.search__close::after {
   position: absolute;
   display: block;
   content: "";
-  width: 15px;
+  width: 8px;
   height: 3px;
   background-color: #fff;
 }
@@ -178,8 +181,8 @@ a:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   background-color: #fff;
   border-radius: 5px;
   transform: translateY(-50%);
@@ -217,7 +220,36 @@ a:hover {
   transform-origin: right;
 }
 
+/* Change Autocomplete styles in Chrome*/
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: 1px solid transparent;
+  -webkit-text-fill-color: transparent;
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
 
+/* icons header */
+
+header .fa-shopping-cart {
+  font-size: 16px;
+  color: white;
+  padding-top: 40px;
+}
+
+header .fa-user-alt {
+  font-size: 16px;
+  color: white;
+  padding-top: 40px;
+  padding-left: 10px;
+}
 
 /*navigation */
 
@@ -240,8 +272,7 @@ a:hover {
 .menu-right-menu-container,
 .menu-left-menu-container,
 .menu-left-menu-polish-container,
-.menu-right-menu-polish-container
-{
+.menu-right-menu-polish-container {
   width: 25%;
 }
 
@@ -279,7 +310,7 @@ a:hover {
   transition: 0.4s;
 }
 #logo-img img {
-  height: 100px;
+  height: 85px;
 }
 
 #menu-icon {
@@ -290,7 +321,6 @@ a:hover {
   display: none;
   align-items: center;
 }
-
 
 /* slideout */
 
@@ -440,9 +470,7 @@ footer #social-media-footer a .fa-facebook,
 footer #social-media-footer a .fa-linkedin,
 footer #social-media-footer a .fa-pinterest,
 footer #social-media-footer a .fa-twitter,
-footer #social-media-footer a .fa-instagram
-
- {
+footer #social-media-footer a .fa-instagram {
   color: white;
   transition: 0.4s;
   font-size: 20px;
@@ -456,8 +484,9 @@ footer #social-media-footer ul {
 }
 
 footer #social-media-footer ul li {
-  font-size: 48px;
-  padding: 16px;
+  font-size: 25px;
+  padding: 15px;
+  padding-top: 0;
   transition: 0.4s;
 }
 
@@ -792,11 +821,11 @@ footer #social-media-footer ul li:hover a .fa-instagram {
     color: black;
   }
 
-footer #social-media-footer a .fa-facebook,
-footer #social-media-footer a .fa-linkedin,
-footer #social-media-footer a .fa-pinterest,
-footer #social-media-footer a .fa-twitter,
-footer #social-media-footer a .fa-instagram {
+  footer #social-media-footer a .fa-facebook,
+  footer #social-media-footer a .fa-linkedin,
+  footer #social-media-footer a .fa-pinterest,
+  footer #social-media-footer a .fa-twitter,
+  footer #social-media-footer a .fa-instagram {
     color: black;
     transition: 0.4s;
   }
@@ -844,19 +873,16 @@ footer #social-media-footer a .fa-instagram {
   }
 }
 
-
-
 /********************************************Showroom**************************************/
-.showroom .grid{
+.showroom .grid {
   display: flex;
-
 }
-.showroom .grid .item{
+.showroom .grid .item {
   width: 20%;
   padding: 10px;
 }
 
-.showroom .grid .item img{
+.showroom .grid .item img {
   width: 100%;
   height: auto;
 }
