@@ -2,26 +2,26 @@
 <footer>
     <div class="container">
         <div id="left-footer">
-            <h3>Quick Links</h3>
+            <h3><?php _e('Quick Links'); ?></h3>
             <p>
             <ul>
                 <li>
-                    <a href="<?php echo site_url('/products'); ?>">Products</a>
+                    <a href="<?php echo site_url('/products'); ?>"><?php _e('Products'); ?></a>
                 </li>
                 <li>
-                    <a href="<?php echo site_url('/colorsamples'); ?>">Color Samples</a>
+                    <a href="<?php echo site_url('/colorsamples'); ?>"><?php _e('Color Samples'); ?></a>
                 </li>
                 <li>
-                    <a href="<?php echo site_url('/resources'); ?>">Resources</a>
+                    <a href="<?php echo site_url('/resources'); ?>"><?php _e('Resources'); ?></a>
                 </li>
                 <li>
-                    <a href="<?php echo site_url('/inspiration'); ?>">Inspiration</a>
+                    <a href="<?php echo site_url('/inspiration'); ?>"><?php _e('Inspiration'); ?></a>
                 </li>
                 <li>
-                    <a href="<?php echo site_url('/ourstory'); ?>">Our Story</a>
+                    <a href="<?php echo site_url('/ourstory'); ?>"><?php _e('Our Story'); ?></a>
                 </li>
                 <li>
-                    <a href="<?php echo site_url('/contact'); ?>">Contact</a>
+                    <a href="<?php echo site_url('/contact'); ?>"><?php _e('Contact'); ?></a>
                 </li>
             </ul>
             </p>
@@ -29,14 +29,14 @@
     </div>
     <div class="container">
         <div id="left-footer">
-            <h3>Other Branches</h3>
+            <h3><?php _e('Other Branches'); ?></h3>
             <p>
             <ul>
                 <li>
-                    <a href="https://www.castrads.com/uk/" target="_blank" rel="noopener">United Kingdom</a>
+                    <a href="https://www.castrads.com/uk/" target="_blank" rel="noopener"><?php _e('United Kingdom'); ?></a>
                 </li>
                 <li>
-                    <a href="https://www.castrads.com/us/" target="_blank" rel="noopener">United State</a>
+                    <a href="https://www.castrads.com/us/" target="_blank" rel="noopener"><?php _e('United State'); ?></a>
                 </li>
             </ul>
             </p>
@@ -44,7 +44,7 @@
     </div>
     <div class="container">
         <div id="right-footer">
-            <h3>Follow us on</h3>
+            <h3><?php _e('Follow us on'); ?></h3>
             <div id="social-media-footer">
                 <ul>
                     <li>

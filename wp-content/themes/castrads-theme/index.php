@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<h2 class="page-heading">How to Heat</h2>
+<h2 class="page-heading"><?php _e('How to Heat'); ?></h2>
 </a>
 
 <section>
@@ -25,7 +25,7 @@
                 <p>
                     <?php echo wp_trim_words(get_the_excerpt(), 30); ?>
                 </p>
-                <a href="<?php the_permalink(); ?>" class="btn-readmore">Read more</a>
+                <!-- <a href="<?php the_permalink(); ?>" class="btn-readmore"><?php _e('Read more'); ?></a> -->
             </div>
         </div>
 

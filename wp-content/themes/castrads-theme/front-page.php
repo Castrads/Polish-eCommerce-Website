@@ -7,24 +7,24 @@
 get_header(); ?>
 
 <div id="banner">
-    <h1 class="banner-heading">WE MAKE CAST IRON RADIATORS</h1>
-    <h2 class="banner-heading">Designed for the modern home</h2>
+    <h1 class="banner-heading"><?php _e('WE MAKE CAST IRON RADIATORS', 'Castrads'); ?></h1>
+    <h2 class="banner-heading"><?php _e('Designed for the modern home'); ?></h2>
     <div class=banner-menu>
-        <a href="<?php echo site_url('/products'); ?>">
-            Shop products
+        <a  class="section-heading" href="<?php echo site_url('/products'); ?>">
+        <?php _e('Shop products'); ?> 
         </a>
-        <a href="<?php echo site_url('/inspiration'); ?>">
-            Order a brochure
+        <a class="section-heading" href="<?php echo site_url('/inspiration'); ?>">
+        <?php _e('Order a brochure'); ?> 
         </a>
-        <a href="<?php echo site_url('/inspiration'); ?>">
-            Book a consultation
+        <a class="section-heading" href="<?php echo site_url('/inspiration'); ?>">
+        <?php _e('Book a consultation'); ?> 
         </a>
     </div>
 </div>
 
 <div class="container">
-    <h2 class="section-heading">How to Heat</h2>
-    <p>Photo-filled design guides with heating advice based on real-life case studies.</p>
+    <h2 class="section-heading"><?php _e('How to Heat'); ?></h2>
+    <p><?php _e('Photo-filled design guides with heating advice based on real-life case studies.'); ?></p>
     <section>
 
         <?php
@@ -56,7 +56,7 @@ get_header(); ?>
                     <p>
                         <?php echo wp_trim_words(get_the_excerpt(), 30); ?>
                     </p>
-                    <!-- <a href="<?php the_permalink(); ?>" class="btn-readmore">Read more</a> -->
+                    <!-- <a href="<?php the_permalink(); ?>" class="btn-readmore"><?php _e('Read more'); ?></a> -->
                 </div>
             </div>
 
@@ -68,7 +68,7 @@ get_header(); ?>
 
     <!-- showrooms -->
     <div class='showroom'>
-        <h2 class="section-heading">Visit a showroom</h2>
+        <h2 class="section-heading"><?php _e('Visit a showroom'); ?></h2>
         <?php get_template_part('template-parts/home-showroom'); ?>
     </div>
 
