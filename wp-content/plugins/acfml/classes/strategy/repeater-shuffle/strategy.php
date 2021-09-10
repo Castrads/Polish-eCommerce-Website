@@ -95,7 +95,7 @@ abstract class Strategy {
 	abstract public function updateOneMeta( $id, $key, $val );
 
 	/**
-	 * @param int $id
+	 * @param int|null $id
 	 *
 	 * @return string
 	 */
