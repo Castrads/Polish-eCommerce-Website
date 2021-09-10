@@ -7,6 +7,7 @@ function gt_setup()
     // wp_enqueue_style('google-fonts', '//fonts.googleapis.com/css?family=Roboto|Roboto+Condensed|Roboto+Slab');
     wp_enqueue_style('fontawesome', '//use.fontawesome.com/releases/v5.1.0/css/all.css');
     wp_enqueue_style('style', get_stylesheet_uri());
+    wp_enqueue_script("jquery", get_theme_file_uri('/js/jquery.js'), NULL, microtime(), true);
     wp_enqueue_style('normalize', get_template_directory_uri() . '/css/normalize.css');
     wp_enqueue_script("main", get_theme_file_uri('/js/main.js'), NULL, microtime(), true);
 }
@@ -81,27 +82,24 @@ add_action('init', 'gt_custom_post_type');
 function my_search_form($form)
 {
     $form = '
-    <form class="search"  method="get"  action="' . home_url('/') . '" >
-                <input type="checkbox" id="toggleSearch" class="search__toggle" hidden  />
-              
-                <div class="search__field">
-                    <label for="toggleSearch" class="search__label">
-                        <span class="search__close"></span>
-                    </label>
-                    <input class="search__input"  type="search" name="s" placeholder="Search Here ..." value="' . get_search_query() . '"/>
-                    <label for="toggleSearch" class="search__label">
-                        <div class="search__button">
-                            <div class="search__icon search__button--toggle"></div>
-                        </div>
-                        <button class="search__button search__button--submit" type="submit"  id="search-btn">
-                            <div class="search__icon"></div>
-                        </button>
-                    </label>
+    <div class=" searchbardiv" id="formsearch">
+    <form class="search"  method="get"  action="' . home_url('/') . '" id="searchform"  >
+            <div class="input-group">
+                <input type="text" id="searchbox" class="form-control" name="s" value="' . get_search_query() . '">
+                <div class="input-group-btn">
+                    <button class="btn btn-default"  id="searchsubmit"  type="submit">
+                        <strong>Search</strong>
+                    </button>
+                    
                 </div>
-            </form>';
+            </div>
+        </form>
+        </div>';
 
     return $form;
 }
+
+
 
 add_filter('get_search_form', 'my_search_form');
 
@@ -110,8 +108,9 @@ add_filter('get_search_form', 'my_search_form');
 
 add_action('get_header', 'my_filter_head');
 
-function my_filter_head() {
-  remove_action('wp_head', '_admin_bar_bump_cb');
+function my_filter_head()
+{
+    remove_action('wp_head', '_admin_bar_bump_cb');
 }
 
 
@@ -125,6 +124,3 @@ function filter_gettext($translation, $text, $domain)
 
 // add the filter 
 add_filter('gettext', 'filter_gettext', 10, 3);
-
-
-

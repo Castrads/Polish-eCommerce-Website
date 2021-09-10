@@ -13,7 +13,7 @@
     <meta property="og:url" content="https://Castrads.com/pl">
     <link rel="shortcut icon" href="favicon.ico" />
     <?php wp_head(); ?>
-    <title>Castrads - Designed for the modern home</title>
+    <title><?php _e('Castrads - Designed for the modern home'); ?></title>
 </head>
 
 <body>
@@ -24,19 +24,21 @@
             <?php wp_nav_menu(array('theme_location' => 'left-menu')); ?>
             <div id="logo-img">
                 <a href="<?php echo site_url(''); ?>">
-                    <img src=" <?php echo get_template_directory_uri(); ?>/img/logo.png" alt="Logo">
+                    <img src=" <?php echo get_template_directory_uri(); ?>/img/logo.svg" alt="Logo">
                 </a>
             </div>
             <?php wp_nav_menu(array('theme_location' => 'right-menu')); ?>
-
-            <?php get_search_form(); ?>
-
-            <i class="fa fa-shopping-cart"></i>
-            <i class="fas fa-user-alt"></i>
-
-            <div class="menu-toggle">
-                <div class="hamburger"></div>
-            </div>
         </nav>
+        <div class="extra-link">
+
+            <a href="#"><i class="fa fa-shopping-cart"></i></a>
+            <a href="#"><i class="fas fa-user-alt"></i></a>
+            <button type="button" class="buttonsearch" id="buttonsearch">
+                <i class="fa fa-search openclosesearch"></i>
+                <i class="fa fa-times openclosesearch" style="display:none"></i>
+            </button>
+            <?php get_search_form(); ?>
+        </div>
     </header>
-    <main id="main">
+
+    <main id="main" class="main">

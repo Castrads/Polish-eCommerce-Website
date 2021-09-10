@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<h2 class="page-heading">Search Results for <?php echo get_search_query(); ?></h2>
+<h2 class="page-heading"><?php _e('Search Results for'); ?><?php echo get_search_query(); ?></h2>
 
 <?php if (have_posts()) {
 ?>
@@ -26,7 +26,7 @@
                     <p>
                         <?php echo wp_trim_words(get_the_excerpt(), 30); ?>
                     </p>
-                    <a href="<?php the_permalink(); ?>" class="btn-readmore">Read more</a>
+                    <a href="<?php the_permalink(); ?>" class="btn-readmore"><?php _e('Read more'); ?></a>
                 </div>
             </div>
 
@@ -38,14 +38,16 @@
 
 <?php } else { ?>
     <div class="no-results">
-        <h2>Couldn't find anything:( Did you just mistype something?</h2>
-        <h3>Don't worry</h3>
-        <h3>Check out the following links:</h3>
+        <h2><?php _e('Could not find anything, Did you just mistype something?'); ?></h2>
+        <h3><?php _e('Don not worry'); ?></h3>
+        <h3><?php _e('Check out the following links:'); ?></h3>
         <ul>
-            <li><a href="<?php echo site_url('/product') ?>">Product</a></li>
-            <li><a href="<?php echo site_url('/resources') ?>">Resources</a></li>
-            <li><a href="<?php echo site_url('/samples') ?>">Samples</a></li>
-            <li><a href="<?php echo site_url('/inspiration') ?>">Inspiration</a></li>
+            <li><a href="<?php echo site_url('/product') ?>"><?php _e('Product'); ?></a></li>
+            <li><a href="<?php echo site_url('/resources') ?>"><?php _e('Resources'); ?></a></li>
+            <li><a href="<?php echo site_url('/samples') ?>"><?php _e('Color Samples'); ?></a></li>
+            <li><a href="<?php echo site_url('/inspiration') ?>"><?php _e('Inspiration'); ?></a></li>
+            <li><a href="<?php echo site_url('/inspiration') ?>"><?php _e('Our Story'); ?></a></li>
+            <li><a href="<?php echo site_url('/inspiration') ?>"><?php _e('Contact'); ?></a></li>
         </ul>
     </div>
 

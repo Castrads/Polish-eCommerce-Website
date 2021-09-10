@@ -1,3 +1,14 @@
+jQuery(document).ready(function($){
+	$('#buttonsearch').click(function(){
+		$('#formsearch').slideToggle( "fast",function(){
+			 $( '#content' ).toggleClass( "moremargin" );
+		} );
+		$('#searchbox').focus()
+		$('.openclosesearch').toggle();
+	})
+  });
+
+
 const menuIcon = document.getElementById("menu-icon");
 const slideoutMenu = document.getElementById("slideout-menu");
 
@@ -12,21 +23,3 @@ menuIcon.addEventListener('click', function () {
   }
 })
 
-// Close onclick outside
-document.addEventListener('click', function(e)  {
-	const toggle = document.querySelector('.search__toggle')
-	const input = document.querySelector('.search__input')
-	const clickedElement = e.target
-
-	if (clickedElement == toggle) {
-		input.value = ''
-		return;
-	}
-
-	const isSearchField = clickedElement.closest('.search__field')		
-	
-	if (!isSearchField) {
-		toggle.checked = false
-		input.value = ''
-	}
-})
