@@ -11,7 +11,7 @@ body {
 }
 
 html {
-  margin-top: 28px !important;
+  /* margin-top: 28px !important; */
   height: 20px;
 }
 
@@ -26,6 +26,7 @@ h1 {
 
 p {
   line-height: 1.5;
+  font-family: "Roboto", sans-serif;
 }
 
 input,
@@ -48,6 +49,7 @@ main {
 a {
   text-decoration: none;
   color: black;
+  font-family: "Roboto", sans-serif;
 }
 a:hover {
   text-decoration: underline;
@@ -59,7 +61,7 @@ a:hover {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background: url("img/Castrads-01.jpg");
+  background: url("img/2.jpg");
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
@@ -107,7 +109,7 @@ a:hover {
   display: block;
   margin: 0 3px;
 }
-/******** SEARCH**********/
+/********SEARCH**********/
 .searchbardiv {
   display: block;
   position: fixed;
@@ -239,9 +241,9 @@ select:-webkit-autofill:focus {
 }
 .header {
   position: fixed;
-  top: 30px;
   left: 0;
   right: 0;
+  z-index: 9999;
 }
 
 header #social-media-header a .fa-facebook,
@@ -257,7 +259,7 @@ header #social-media-header a .fa-instagram {
 /*navigation */
 
 .main-navigation {
-  height: 100px;
+  height: 110px;
   background: rgb(255, 255, 255);
   width: 100%;
   margin: 0;
@@ -312,7 +314,7 @@ header #social-media-header a .fa-instagram {
   transition: 0.4s;
 }
 #logo-img img {
-  height: 85px;
+  height: 90px;
 }
 
 #menu-icon {
@@ -377,8 +379,8 @@ section {
 .section-heading {
   font-size: 32px;
   font-family: "Rokkitt", sans-serif;
-  border-left: 3px solid black;
-  border-right: 3px solid black;
+  border-left: 3px solid white;
+  border-right: 3px solid white;
   transition: all 0.4s;
   display: inline-block;
   padding: 4px 32px;
@@ -620,6 +622,31 @@ footer #social-media-footer ul li:hover a .fa-instagram {
 
 .container-404 img {
   width: 480px;
+}
+
+/* home-ourstory*/
+
+.home-ourstory {
+  padding-top: 100px;
+  display: flex;
+  align-items: center;
+}
+
+.ourstory-left {
+  padding: 30px;
+}
+
+.ourstory-right h2{
+  font-size: 2rem;
+}
+
+.ourstory-right a{
+  text-decoration: underline;
+}
+
+.ourstory-right {
+  padding: 30px;
+  
 }
 
 /********Showroom*******/
