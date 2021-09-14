@@ -24,7 +24,7 @@
             <?php wp_nav_menu(array('theme_location' => 'left-menu')); ?>
             <div id="logo-img">
                 <a href="<?php echo site_url(''); ?>">
-                    <img src=" <?php echo get_template_directory_uri(); ?>/img/logo.svg" alt="Logo">
+                    <img src=" <?php echo get_template_directory_uri(); ?>/img/logo.png" alt="Logo">
                 </a>
             </div>
             <?php wp_nav_menu(array('theme_location' => 'right-menu')); ?>
@@ -39,6 +39,36 @@
             </button>
             <?php get_search_form(); ?>
         </div>
-    </header>
+
+    <!-- <div class="social-media-header">
+                <ul>
+                    <li>
+                        <a href="https://www.facebook.com/castrads" target="_blank" rel="noopener">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://twitter.com/castrads" target="_blank" rel="noopener">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.linkedin.com/company/castrads/" target="_blank" rel="noopener">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/castrads/" target="_blank" rel="noopener">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.pinterest.co.uk/castrads/" target="_blank" rel="noopener">
+                            <i class="fab fa-pinterest"></i>
+                        </a>
+                    </li>
+                </ul> -->
+            </div>
+            </header>
 
     <main id="main" class="main">

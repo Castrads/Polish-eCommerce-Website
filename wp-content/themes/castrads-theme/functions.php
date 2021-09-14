@@ -115,12 +115,4 @@ function my_filter_head()
 
 
 
-// define the gettext callback 
-function filter_gettext($translation, $text, $domain)
-{
-    // make filter magic happen here... 
-    return $translation;
-};
 
-// add the filter 
-add_filter('gettext', 'filter_gettext', 10, 3);

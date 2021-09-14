@@ -5,7 +5,7 @@
    <h2 class="page-heading"><?php _e('Page Not Found'); ?></h2>
    <img src="">
 
-   <h3><?php _e('Sorry, we couldn not find the page you are looking for, Please try following links.'); ?></h3>
+   <h3><?php _e('Sorry, we could not find the page you are looking for, Please try following links.'); ?></h3>
 
    <ul>
       <li><a href="<?php echo site_url('/product') ?>"><?php _e('Product'); ?></a></li>

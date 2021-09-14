@@ -39,7 +39,7 @@
 <?php } else { ?>
     <div class="no-results">
         <h2><?php _e('Could not find anything, Did you just mistype something?'); ?></h2>
-        <h3><?php _e('Don not worry'); ?></h3>
+        <h3><?php _e('Do not worry'); ?></h3>
         <h3><?php _e('Check out the following links:'); ?></h3>
         <ul>
             <li><a href="<?php echo site_url('/product') ?>"><?php _e('Product'); ?></a></li>
