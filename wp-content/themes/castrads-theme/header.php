@@ -24,7 +24,7 @@
             <?php wp_nav_menu(array('theme_location' => 'left-menu')); ?>
             <div id="logo-img">
                 <a href="<?php echo site_url(''); ?>">
-                    <img src=" <?php echo get_template_directory_uri(); ?>/img/logo.png" alt="Logo">
+                    <img src=" <?php echo get_template_directory_uri(); ?>/img/logo.svg" alt="Logo">
                 </a>
             </div>
             <?php wp_nav_menu(array('theme_location' => 'right-menu')); ?>

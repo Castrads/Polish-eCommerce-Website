@@ -10,13 +10,13 @@ get_header(); ?>
     <h1 class="banner-heading"><?php _e('WE MAKE CAST IRON RADIATORS', 'Castrads'); ?></h1>
     <h2 class="banner-heading"><?php _e('Designed for the modern home'); ?></h2>
     <div class=banner-menu>
-        <a class="section-heading" href="<?php echo site_url('/products'); ?>">
+        <a class="banner-menu-style" href="<?php echo site_url('/products'); ?>">
             <?php _e('Shop products'); ?>
         </a>
-        <a class="section-heading" href="<?php echo site_url('/inspiration'); ?>">
+        <a class="banner-menu-style" href="<?php echo site_url('/inspiration'); ?>">
             <?php _e('Order a brochure'); ?>
         </a>
-        <a class="section-heading" href="<?php echo site_url('/inspiration'); ?>">
+        <a class="banner-menu-style" href="<?php echo site_url('/inspiration'); ?>">
             <?php _e('Book a consultation'); ?>
         </a>
     </div>
@@ -24,11 +24,11 @@ get_header(); ?>
 
 <!-- Our Story -->
 <div class='container home-ourstory'>
-<div class='ourstory-left'>
+    <div class='ourstory-left'>
         <?php
         $image = get_field('image');
         if (!empty($image)) : ?>
-            <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
+            <img class='ourstory-img' src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
         <?php endif; ?>
     </div>
     <div class='ourstory-right'>
@@ -42,7 +42,7 @@ get_header(); ?>
         <?php endif; ?>
     </div>
 
-   
+
 </div>
 
 <!-- How to Heat -->
@@ -54,7 +54,7 @@ get_header(); ?>
         <?php
         $args = array(
             'post_type' => 'post',
-            'posts_per_page' => 10
+            'posts_per_page' => 2
 
         );
 
@@ -89,11 +89,11 @@ get_header(); ?>
     </section>
 
     <!-- showrooms -->
+
     <div class='showroom'>
-        <h2 class="section-heading"><?php _e('Visit a showroom'); ?></h2>
+        <h2 class="showroom-heading"><?php _e('Visit a Showroom'); ?></h2>
         <?php get_template_part('template-parts/home-showroom'); ?>
     </div>
-
-
 </div>
+
 <?php get_footer(); ?>
