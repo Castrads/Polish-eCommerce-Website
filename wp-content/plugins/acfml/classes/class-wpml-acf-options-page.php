@@ -1,5 +1,8 @@
 <?php
 
+use WPML\FP\Obj;
+use WPML\FP\Relation;
+
 class WPML_ACF_Options_Page {
 	/**
 	 * @var SitePress
@@ -38,7 +41,7 @@ class WPML_ACF_Options_Page {
 	public function register_hooks() {
 		add_filter( 'acf/pre_render_fields', array( $this, 'fields_on_translated_options_page' ), 10, 2 );
 		add_filter( 'acf/update_value', array( $this, 'overwrite_option_value' ), 10, 4 );
-
+		add_filter( 'acf/validate_post_id', [ $this, 'append_language_code_for_option_pages' ] );
 	}
 
 	/**
@@ -71,19 +74,26 @@ class WPML_ACF_Options_Page {
 	 * @return array
 	 */
 	private function get_field_options( array $field, $post_id ) {
-		if ( isset( $field['wpml_cf_preferences'] ) && ! $this->is_repeater_field( $field ) ) {
+		if ( isset( $field['wpml_cf_preferences'] ) ) {
 			switch ( $field['wpml_cf_preferences'] ) {
 				case WPML_COPY_CUSTOM_FIELD:
 					if ( $this->is_field_on_translated_options_page( $post_id ) ) {
-						$field['value'] = $this->convert_relationship_field( acf_get_value( self::ORIGINAL_ID, $field ), $field );
-
-						$instructions = '';
-						if ( isset( $field['instructions'] ) ) {
-							$instructions = $field['instructions'] . '<br />';
+						if ( $this->is_repeater_field( $field ) ) {
+							$field['value'] = acf_get_value( self::ORIGINAL_ID, $field );
+							$field = $this->updateTranslatedSubfieldValue( $field );
+						} else {
+							
+							$field['value'] = $this->convert_relationship_field( acf_get_value( self::ORIGINAL_ID, $field ), $field );
+							
+							$instructions = '';
+							if ( isset( $field['instructions'] ) ) {
+								$instructions = $field['instructions'] . '<br />';
+							}
+							$instructions .= __( 'This value will be always replaced with the original, because its translation preferences are set to copy.', 'acfml' );
+							
+							$field['instructions'] = $instructions;
 						}
-						$instructions .= __( 'This value will be always replaced with the original, because its translation preferences are set to copy.', 'acfml' );
-
-						$field['instructions'] = $instructions;
+						
 					}
 					break;
 				case WPML_COPY_ONCE_CUSTOM_FIELD:
@@ -99,6 +109,67 @@ class WPML_ACF_Options_Page {
 		}
 
 		return $field;
+	}
+	
+	/**
+	 * @param array $field
+	 *
+	 * @return array
+	 */
+	private function updateTranslatedSubfieldValue( $field ) {
+		if ( is_array( $field['value'] ) ) {
+			foreach ( $field['value'] as $row => $pair ) {
+				foreach ( $pair as $fieldHash => $fieldRealValue ) {
+					$subfieldName = $this->getMatchingTranslatableSubFieldName( $field, $fieldHash );
+					
+					if ( $subfieldName ) {
+						$field['value'][ $row ][ $fieldHash ] = get_option( $this->getTranslatedSubfieldName( $field['name'], $row, $subfieldName ) );
+					}
+				}
+			}
+		}
+		return $field;
+	}
+	
+	/**
+	 * @param array  $field
+	 * @param string $fieldHash
+	 *
+	 * @return string|null
+	 */
+	private function getMatchingTranslatableSubFieldName( $field, $fieldHash ) {
+		
+		// $matchesHash :: array -> bool
+		$matchesHash = Relation::propEq( 'key', $fieldHash );
+
+		// $isTranslatable :: array -> bool
+		$isTranslatable = Relation::propEq( 'wpml_cf_preferences', WPML_TRANSLATE_CUSTOM_FIELD );
+
+		// $getName :: array -> string|null
+		$getName = Obj::prop( 'name' );
+
+		return wpml_collect( Obj::propOr( [], 'sub_fields', $field ) )
+			->filter( $matchesHash )
+			->filter( $isTranslatable )
+			->map( $getName )
+			->first();
+	}
+	
+	/**
+	 * @param string $parentFieldName
+	 * @param int    $row
+	 * @param string $subFieldName
+	 *
+	 * @return string
+	 */
+	private function getTranslatedSubfieldName( $parentFieldName, $row, $subFieldName ) {
+		return sprintf(
+			'%s_%s_%d_%s',
+			sprintf( self::TRANSLATED_ID_FORMAT, $this->sitepress->get_current_language() ),
+			$parentFieldName,
+			$row,
+			$subFieldName
+		);
 	}
 
 
@@ -165,5 +236,67 @@ class WPML_ACF_Options_Page {
 	 */
 	private function is_repeater_field( $field ) {
 		return isset( $field['type'] ) && 'repeater' === $field['type'];
+	}
+	
+	/**
+	 * @param mixed $post_id
+	 *
+	 * @return mixed|string
+	 */
+	public function append_language_code_for_option_pages( $post_id ) {
+		$cl = acf_get_setting('current_language');
+		
+		if ( is_string( $post_id )
+			&& ! $this->id_starts_with_options( $post_id )
+			&& ! $this->id_ends_with_language_code( $post_id, $cl )
+			&& ! $this->is_term_id( $post_id )
+			&& ! $this->is_block_id( $post_id )
+		) {
+			$dl = acf_get_setting('default_language');
+			
+			if( $cl && $cl !== $dl ) {
+				
+				$post_id .= '_' . $cl;
+				
+			}
+		}
+		return $post_id;
+	}
+	
+	/**
+	 * @param mixed $post_id
+	 *
+	 * @return bool
+	 */
+	private function id_starts_with_options( $post_id ) {;
+		return 'options' === substr( $post_id, 0, 7 );
+	}
+	
+	/**
+	 * @param string $post_id
+	 *
+	 * @return bool
+	 */
+	private function is_block_id( $post_id ) {
+		return 'block_' === substr( $post_id, 0, 6 );
+	}
+	
+	/**
+	 * @param mixed $post_id
+	 * @param string $language_code
+	 *
+	 * @return bool
+	 */
+	private function id_ends_with_language_code( $post_id, $language_code ) {
+		return '_' . $language_code === substr( $post_id, -3 );
+	}
+	
+	/**
+	 * @param mixed $post_id
+	 *
+	 * @return bool
+	 */
+	private function is_term_id( $post_id ) {
+		return 'term_' === substr( $post_id, 0, 5 );
 	}
 }

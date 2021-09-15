@@ -1,40 +1,45 @@
 <?php
 /**
  * Plugin Name: Advanced Custom Fields Multilingual
- * Description: Adds compatibility between WPML and Advanced Custom Fields | <a href="https://wpml.org/documentation/related-projects/translate-sites-built-with-acf/">Documentation</a>
+ * Description: Adds compatibility between WPML and Advanced Custom Fields | <a href="https://wpml.org/documentation/related-projects/translate-sites-built-with-acf/?utm_source=plugin&utm_medium=gui&utm_campaign=acfml">Documentation</a>
  * Author: OnTheGoSystems
  * Plugin URI: https://wpml.org/
  * Author URI: http://www.onthegosystems.com/
- * Version: 1.8.2
+ * Version: 1.9.0
  *
  * @package WPML\ACF
  */
 
-$autoloader_dir = __DIR__ . '/vendor';
-if ( version_compare( PHP_VERSION, '5.3.0' ) >= 0 ) {
-	$autoloader = $autoloader_dir . '/autoload.php';
-} else {
-	$autoloader = $autoloader_dir . '/autoload_52.php';
-}
-require_once $autoloader;
+function acfmlInit() {
+	$vendorDir = __DIR__ . '/vendor';
 
-$acfml_dependencies_factory = new WPML_ACF_Dependencies_Factory();
-$acfml = new WPML_ACF( $acfml_dependencies_factory );
-if ( $acfml ) {
-	add_action( 'wpml_loaded', [ $acfml, 'init_worker' ] );
-	$acfml_dependencies_factory->create_requirements();
-}
+	if ( ! class_exists( 'WPML_Core_Version_Check' ) ) {
+		require_once $vendorDir . '/wpml-shared/wpml-lib-dependencies/src/dependencies/class-wpml-core-version-check.php';
+	}
 
-add_action( 'admin_enqueue_scripts', 'acfml_enqueue_scripts' );
+	if ( ! WPML_Core_Version_Check::is_ok( __DIR__ . '/wpml-dependencies.json' ) ) {
+		return;
+	}
 
-/**
- * Hooks the scripts and styles.
- */
-function acfml_enqueue_scripts() {
-	if ( is_admin() ) {
+	require_once $vendorDir . '/autoload.php';
+
+	$acfml_dependencies_factory = new WPML_ACF_Dependencies_Factory();
+	$acfml = new WPML_ACF( $acfml_dependencies_factory );
+	$acfml->init_worker();
+
+	add_action( 'admin_enqueue_scripts', function() {
 		wp_enqueue_script( 'acfml_js', plugin_dir_url( __FILE__ ) . 'assets/js/admin-script.js', array( 'jquery' ) );
 		wp_enqueue_style( 'acfml_css', plugin_dir_url( __FILE__ ) . 'assets/css/admin-style.css' );
-	}
+	} );
 }
 
+function loadACFMLrequirements() {
+	require_once __DIR__ . '/classes/class-wpml-acf-requirements.php';
 
+	$requirements = new WPML_ACF_Requirements();
+	$requirements->check_wpml_core();
+}
+
+add_action( 'wpml_loaded', 'acfmlInit' );
+
+add_action( 'plugins_loaded', 'loadACFMLrequirements' );

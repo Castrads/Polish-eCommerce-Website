@@ -1,8 +1,19 @@
 <?php
 
+use ACFML\FieldState;
+
 class WPML_ACF_Custom_Fields_Sync {
 
 	const TR_JOB_FIELD_PATTERN = '/field-(\S+)-[0-9]/';
+	
+	/**
+	 * @var FieldState
+	 */
+	private $field_state;
+	
+	public function __construct( FieldState $field_state ) {
+		$this->field_state = $field_state;
+	}
 
 	/**
 	 * Registers hooks related to custom fields synchronisation.
@@ -33,6 +44,7 @@ class WPML_ACF_Custom_Fields_Sync {
 	 */
 	public function clean_empty_values_for_copy_once_field( $value, $post_id, $field ) {
 		if ( '' === $value
+			&& ! $this->value_has_been_emptied( $field )
 			&& isset( $field['wpml_cf_preferences'] )
 			&& WPML_COPY_ONCE_CUSTOM_FIELD === $field['wpml_cf_preferences']
 			&& ! $this->isFieldType( $field, 'group' )
@@ -40,6 +52,11 @@ class WPML_ACF_Custom_Fields_Sync {
 			$value = null;
 		}
 		return $value;
+	}
+	
+	private function value_has_been_emptied( $field ) {
+		$state_before = $this->field_state->getStateBefore();
+		return ! empty( $state_before[ $field['name'] ] );
 	}
 
 	/**

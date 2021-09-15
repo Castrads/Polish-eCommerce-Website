@@ -1,5 +1,7 @@
 <?php
 class WPML_ACF_Worker {
+	const TP_APPLY_TRANSLATIONS_ROUTE = '/tp/apply-translations';
+
 	/**
 	 * @var WPML_ACF_Duplicated_Post
 	 */
@@ -22,7 +24,6 @@ class WPML_ACF_Worker {
 		add_filter('wpml_duplicate_generic_string', array($this, 'duplicate_post_meta'), 10, 3);
 		add_filter('wpml_sync_parent_for_post_type', array($this, 'sync_parent_for_post_type'), 10, 2);
 		add_action('wpml_after_copy_custom_field', array($this, 'after_copy_custom_field'), 10, 3);
-		add_filter( 'wpml_sync_custom_field_copied_value', [ $this, 'sync_custom_field_copied_value' ], 10, 4 );
 	}
 
 	/**
@@ -62,25 +63,6 @@ class WPML_ACF_Worker {
 	}
 
 	/**
-	 * Synchronizes ACF field copied value when it comes from Translation Services.
-	 *
-	 * @param mixed  $copiedValue Value being copied.
-	 * @param int    $postIdFrom  ID of original post.
-	 * @param int    $postIdTo    ID of translated post.
-	 * @param string $metaKey     ACF field key.
-	 *
-	 * @return mixed
-	 */
-	public function sync_custom_field_copied_value( $copiedValue, $postIdFrom, $postIdTo, $metaKey ) {
-		if ( $this->isApplyTranslationsRequest() ) {
-			$metaData      = $this->prepare_metadata( $copiedValue, $metaKey, $postIdFrom, $postIdTo );
-			$processedData = new WPML_ACF_Processed_Data( $copiedValue, $this->get_target_lang( $postIdTo ), $metaData );
-			return $this->convertMetaValue( $processedData );
-		}
-		return $copiedValue;
-	}
-
-	/**
 	 * Converts IDs and stuff inside ACF field value.
 	 *
 	 * @param WPML_ACF_Processed_Data $processedData The data being processed.
@@ -105,10 +87,10 @@ class WPML_ACF_Worker {
 	 *
 	 * @see \WPML_Post_Duplication::duplicate_custom_fields
 	 *
-	 * @param string $meta_value   The meta value of processed custom field.
-	 * @param string $meta_key     The meta key of processed custom field.
-	 * @param int    $post_id_from The ID of original post.
-	 * @param int    $post_id_to   The ID of translated post.
+	 * @param string        $meta_value   The meta value of processed custom field.
+	 * @param string        $meta_key     The meta key of processed custom field.
+	 * @param int|string    $post_id_from The ID of original post or .
+	 * @param int|string    $post_id_to   The ID of translated post.
 	 *
 	 * @return array The metadata.
 	 */
@@ -150,7 +132,7 @@ class WPML_ACF_Worker {
 	 * @return false|string
 	 */
 	private function getTargetLangFromTranslationJob() {
-		if ( isset( $_POST['trid'], $_POST['lang'] ) && ( $this->isCTEjobAction() || $this->isATEjobAction() ) ) {
+		if ( isset( $_POST['trid'], $_POST['lang'] ) && ( $this->isCTEjobAction() || $this->isApplyingTranslations() ) ) {
 			return filter_var( $_POST['lang'], FILTER_SANITIZE_STRING );
 		}
 		return false;
@@ -166,24 +148,11 @@ class WPML_ACF_Worker {
 	}
 
 	/**
-	 * Checks if this is request during saving translation job from ATE.
+	 * Checks if this is request during saving translation job from ATE or translation service.
 	 *
 	 * @return bool
 	 */
-	private function isATEjobAction() {
-		return isset( $_SERVER['REQUEST_URI'] ) && 0 < stripos( $_SERVER['REQUEST_URI'], 'ate/jobs/download' );
-	}
-
-	/**
-	 * Checks if request is done with wp-json endpoint 'apply-translations'.
-	 *
-	 * @return bool
-	 */
-	private function isApplyTranslationsRequest() {
-		return isset( $_SERVER['REQUEST_URI'] ) && ( function() {
-			$end = 'apply-translations/';
-			$length = strlen( $end );
-			return ( substr( $_SERVER['REQUEST_URI'], -$length ) === $end );
-		} );
+	private function isApplyingTranslations() {
+		return isset( $_SERVER['REQUEST_URI'] ) && false !== stripos( $_SERVER['REQUEST_URI'], self::TP_APPLY_TRANSLATIONS_ROUTE );
 	}
 }

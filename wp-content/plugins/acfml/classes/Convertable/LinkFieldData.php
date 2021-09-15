@@ -85,7 +85,7 @@ class LinkFieldData implements \WPML_ACF_Convertable {
 	 * @param int    $ID         Post ID.
 	 * @param string $targetLang Target language.
 	 *
-	 * @return bool|false|string|\WP_Error
+	 * @return false|string
 	 */
 	private function getPermalink( $ID, $targetLang ) {
 		$currentLang = apply_filters( 'wpml_current_language', null );

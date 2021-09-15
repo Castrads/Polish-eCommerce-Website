@@ -8,6 +8,11 @@ class WPML_ACF {
 	private $dependencies_factory;
 
 	/**
+	 * @var ACFML\Repeater\Shuffle\Strategy|void
+	 */
+	private $shuffle_strategy;
+
+	/**
 	 * WPML_ACF constructor.
 	 *
 	 * @param \WPML_ACF_Dependencies_Factory $WPML_ACF_Dependencies_Factory
@@ -16,11 +21,33 @@ class WPML_ACF {
 		$this->dependencies_factory = $WPML_ACF_Dependencies_Factory;
 	}
 
+	private function set_shuffle_strategy() {
+		global $pagenow;
+		$is_repeater_update_on_term_edit  = isset( $_REQUEST['action'] ) && 'editedtag' === $_REQUEST['action'] && isset( $_REQUEST['acf'] );
+		$is_repeater_display_on_term_edit = isset( $pagenow ) && 'term.php' === $pagenow;
+		$is_repeater_update_on_post_edit  = isset( $_REQUEST['action'] ) && 'editpost' === $_REQUEST['action'] && isset( $_REQUEST['acf'] );
+		$is_repeater_display_on_post_edit = isset( $pagenow ) && 'post.php' === $pagenow;
+
+		if ( $is_repeater_update_on_term_edit || $is_repeater_display_on_term_edit ) {
+			if ( isset( $_REQUEST['taxonomy'] ) ) {
+				$this->shuffle_strategy = new \ACFML\Repeater\Shuffle\Term( $_REQUEST['taxonomy'] );
+			}
+		} elseif ( $is_repeater_update_on_post_edit || $is_repeater_display_on_post_edit ) {
+			$this->shuffle_strategy = new \ACFML\Repeater\Shuffle\Post();
+		}
+	}
+
 	/**
 	 * @return void
 	 */
 	public function init_worker() {
 		if ( $this->is_acf_active() ) {
+			$this->set_shuffle_strategy();
+			if ( $this->shuffle_strategy ) {
+				$this->init_field_state();
+				$this->init_custom_fields_synchronisation_handler();
+				$this->init_acf_repeater_shuffle();
+			}
 			$this->initOptionsPageMigrationString();
 			$this->initBlockPreferencesMigration();
 			$this->init_options_page();
@@ -28,17 +55,21 @@ class WPML_ACF {
 			$this->init_acf_xliff();
 			$this->init_acf_pro();
 			$this->init_acf_field_annotations();
-			$this->init_custom_fields_synchronisation_handler();
 			$this->init_acf_location_rules();
 			$this->init_acf_attachments();
 			$this->init_acf_field_settings();
 			$this->init_acf_blocks();
-			$this->init_acf_repeater_shuffle();
 			$this->initEditorsHooks();
 			$this->dependencies_factory->create_display_translated();
 			$this->init_duplicated_post();
 			$this->init_acf_field_reference_adjuster();
+			$this->init_transfer_tools();
 		}
+	}
+
+	private function init_field_state() {
+		$field_state = $this->dependencies_factory->create_field_state( $this->shuffle_strategy );
+		$field_state->registerHooks();
 	}
 
 	/**
@@ -79,23 +110,8 @@ class WPML_ACF {
 	 * Initiates class for handling changes in order of fields inside repeater field.
 	 */
 	private function init_acf_repeater_shuffle() {
-		global $pagenow;
-		$is_repeater_update_on_term_edit  = isset( $_REQUEST['action'] ) && 'editedtag' === $_REQUEST['action'] && isset( $_REQUEST['acf'] );
-		$is_repeater_display_on_term_edit = isset( $pagenow ) && 'term.php' === $pagenow;
-		$is_repeater_update_on_post_edit  = isset( $_REQUEST['action'] ) && 'editpost' === $_REQUEST['action'] && isset( $_REQUEST['acf'] );
-		$is_repeater_display_on_post_edit = isset( $pagenow ) && 'post.php' === $pagenow;
-		if ( $is_repeater_update_on_term_edit || $is_repeater_display_on_term_edit ) {
-			if ( isset( $_REQUEST['taxonomy'] ) ) {
-				$shuffled = new \ACFML\Repeater\Shuffle\Term( $_REQUEST['taxonomy'] );
-			}
-		} elseif ( $is_repeater_update_on_post_edit || $is_repeater_display_on_post_edit ) {
-			$shuffled = new \ACFML\Repeater\Shuffle\Post();
-		}
-
-		if ( isset( $shuffled ) ) {
-			$wpml_acf_repeater_shuffle = $this->dependencies_factory->create_repeater_shuffle( $shuffled );
-			$wpml_acf_repeater_shuffle->register_hooks();
-		}
+		$wpml_acf_repeater_shuffle = $this->dependencies_factory->create_repeater_shuffle( $this->shuffle_strategy );
+		$wpml_acf_repeater_shuffle->register_hooks();
 	}
 
 	private function init_acf_pro() {
@@ -111,12 +127,12 @@ class WPML_ACF {
 	}
 
 	private function init_custom_fields_synchronisation_handler() {
-		$WPML_ACF_Custom_Fields_Sync = $this->dependencies_factory->create_custom_fields_sync();
+		$WPML_ACF_Custom_Fields_Sync = $this->dependencies_factory->create_custom_fields_sync( $this->shuffle_strategy );
 		$WPML_ACF_Custom_Fields_Sync->register_hooks();
 	}
 
 	private function init_acf_location_rules() {
-		$this->dependencies_factory->create_location_rules();
+		$this->dependencies_factory->create_location_rules()->register_hooks();
 	}
 
 	private function init_acf_attachments() {
@@ -170,5 +186,14 @@ class WPML_ACF {
 	private function init_acf_field_reference_adjuster() {
 		$fieldValues = $this->dependencies_factory->create_field_adjuster();
 		$fieldValues->register_hooks();
+	}
+
+	/**
+	 * Instantiate ACFML\Tools\* classes and register hooks.
+	 */
+	private function init_transfer_tools() {
+		$this->dependencies_factory->create_tools_export()->init();
+		$this->dependencies_factory->create_tools_import()->init();
+		$this->dependencies_factory->create_tools_local()->init();
 	}
 }

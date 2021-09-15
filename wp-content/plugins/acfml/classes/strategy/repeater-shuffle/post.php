@@ -22,7 +22,7 @@ class Post extends Strategy {
 	 *
 	 * @param  int $id The post ID
 	 *
-	 * @return object|null Value object with id and type or null when element not found.
+	 * @return object|void Value object with id and type or null when element not found.
 	 */
 	protected function getElement( $id ) {
 		if ( $this->isValidId( $id ) ) {
@@ -75,7 +75,7 @@ class Post extends Strategy {
 	}
 
 	/**
-	 * @param $id
+	 * @param int|null $id
 	 *
 	 * @return mixed|void
 	 */

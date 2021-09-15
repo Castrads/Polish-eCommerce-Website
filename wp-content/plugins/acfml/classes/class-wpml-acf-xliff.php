@@ -4,7 +4,7 @@
  * @author OnTheGo Systems
  */
 class WPML_ACF_Xliff {
-	/** @var WPDB $wpdb */
+	/** @var wpdb $wpdb */
 	public $wpdb;
 	/** @var SitePress $sitepress */
 	protected $sitepress;

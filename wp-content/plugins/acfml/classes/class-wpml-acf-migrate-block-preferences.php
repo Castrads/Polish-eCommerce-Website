@@ -97,7 +97,7 @@ class MigrateBlockPreferences {
 		foreach ( $this->getFieldsOfGroup( $parentId ) as $field ) {
 			$fieldObject = acf_get_field( $field->post_name );
 			if ( $this->fieldSettings->fieldPreferencesNotMigrated( $fieldObject ) ) {
-				if ( $this->fieldSettings->field_should_be_set_to_copy( $fieldObject ) ) {
+				if ( $this->fieldSettings->field_should_be_set_to_copy_once( $fieldObject ) ) {
 				    $this->setFieldTranslationPreference( $fieldObject, WPML_COPY_CUSTOM_FIELD );
 					$this->migrateChildren( $fieldObject['ID'] );
 				} else {

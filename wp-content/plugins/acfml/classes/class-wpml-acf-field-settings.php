@@ -1,5 +1,7 @@
 <?php
 
+use WPML\FP\Obj;
+
 class WPML_ACF_Field_Settings {
 
 	/**
@@ -50,7 +52,7 @@ class WPML_ACF_Field_Settings {
 		add_filter( 'acf/get_field_label', array( $this, 'mark_not_migrated_field' ), 10, 2 );
 
 		// repeater and flexible fields should be set to Copy.
-		add_filter( 'acf/get_field_label', array( $this, 'adviceToSetCopyForField' ), 10, 2 );
+		add_filter( 'acf/get_field_label', array( $this, 'adviceToSetCopyOnceForField' ), 10, 2 );
 	}
 
 	/**
@@ -63,12 +65,13 @@ class WPML_ACF_Field_Settings {
 	 */
 	public function render_field_settings( $field ) {
 		acf_render_field_setting( $field, array(
-			'label'			=> __('Translation preferences','acfml'),
-			'instructions'	=> __('What to do with field\'s value when post/page is going to be translated','acf'),
-			'type'			=> 'radio',
-			'name'			=> 'wpml_cf_preferences',
-			'layout'		=> 'horizontal',
-			'choices'		=> $this->getFieldOptions()
+			'label'         => __('Translation preferences','acfml'),
+			'instructions'  => __('What to do with field\'s value when post/page is going to be translated','acf'),
+			'type'          => 'radio',
+			'name'          => 'wpml_cf_preferences',
+			'layout'        => 'horizontal',
+			'choices'       => $this->getFieldOptions(),
+			'default_value' => WPML_COPY_CUSTOM_FIELD
 		));
 	}
 
@@ -86,7 +89,7 @@ class WPML_ACF_Field_Settings {
 	 * Synchronise translation preferences when user adds new field value on post edit screen.
 	 *
 	 * @param mixed $value   Field value being updated.
-	 * @param int   $post_id The ID of currrent post being updated.
+	 * @param int   $post_id The ID of current post being updated.
 	 * @param array $field   The ACF field.
 	 * @param null  $_value  Deprecated.
 	 *
@@ -111,7 +114,7 @@ class WPML_ACF_Field_Settings {
 	 */
 	private function is_field_parsable( $field ) {
 		return ( isset( $field['wpml_cf_preferences'], $field['name'] ) && $this->isValidFieldPreference( $field['wpml_cf_preferences'] ) && $field['name'] )
-			|| $this->field_should_be_set_to_copy( $field );
+			|| $this->field_should_be_set_to_copy_once( $field );
 	}
 
 	/**
@@ -302,9 +305,9 @@ class WPML_ACF_Field_Settings {
 	}
 
 	/**
-	 * Repeater and flexible fields' translation preferences should be set to Copy.
+	 * Repeater and flexible fields' translation preferences should be set to Copy once.
 	 *
-	 * Advice to set translation preferences to Copy for repeater and flexible fields
+	 * Advice to set translation preferences to Copy once for repeater and flexible fields
 	 * if not already set.
 	 *
 	 * @param string $label
@@ -312,11 +315,11 @@ class WPML_ACF_Field_Settings {
 	 *
 	 * @return string
 	 */
-	public function adviceToSetCopyForField( $label, $field ) {
-		$fieldNotSetToCopy = ! isset( $field['wpml_cf_preferences'] ) || WPML_COPY_CUSTOM_FIELD !== (int) $field['wpml_cf_preferences'];
-		if ( $this->field_should_be_set_to_copy( $field ) && $fieldNotSetToCopy && $this->isFieldGroupEditScreen() ) {
+	public function adviceToSetCopyOnceForField( $label, $field ) {
+		$fieldNotSetToCopy = ! isset( $field['wpml_cf_preferences'] ) || WPML_COPY_ONCE_CUSTOM_FIELD !== (int) $field['wpml_cf_preferences'];
+		if ( $this->field_should_be_set_to_copy_once( $field ) && $fieldNotSetToCopy && $this->isFieldGroupEditScreen() ) {
 			$label .= ' <span class="dashicons dashicons-lightbulb acfml-advice-copy-setting"
- 							title="' . esc_attr_x( 'We recommend using the "Copy" translation preferences for repeater and flexible fields. You can use other translation preferences, but if you notice any translation issues with subfields, please go back here and try to change this setting.', 'acfml' ) . '"></span>';
+ 							title="' . esc_attr_x( 'We recommend using the "Copy once" translation preferences for repeater and flexible fields. You can use other translation preferences, but if you notice any translation issues with subfields, please go back here and try to change this setting.', 'acfml' ) . '"></span>';
 		}
 		return $label;
 	}
@@ -338,7 +341,7 @@ class WPML_ACF_Field_Settings {
 	 *
 	 * @return bool
 	 */
-	public function field_should_be_set_to_copy( $field ) {
+	public function field_should_be_set_to_copy_once($field ) {
 		$fields_always_copied = [
 			'repeater',
 			'flexible_content',

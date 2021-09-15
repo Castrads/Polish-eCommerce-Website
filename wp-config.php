@@ -18,6 +18,14 @@
  * @package WordPress
  */
 
+define('FORCE_SSL_ADMIN', true);  
+define('WP_HOME', 'https://www.castrads.pl');
+define('WP_SITEURL', 'https://www.castrads.pl');
+
+if (strpos($_SERVER['HTTP_X_FORWARDED_PROTO'], 'https') !== false) {
+    $_SERVER['HTTPS']='on';
+}
+
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
 define( 'DB_NAME', 'polish_woo' );
@@ -81,16 +89,13 @@ $table_prefix = 'wp_';
  */
 define( 'WP_DEBUG', false );
 
-@ini_set( 'upload_max_filesize' , '3000M' );
-@ini_set( 'post_max_size', '3000M');
-@ini_set( 'memory_limit', '2560M' );
-@ini_set( 'max_execution_time', '3000' );
-@ini_set( 'max_input_time', '3000' );
-
+@ini_set( 'upload_max_filesize' , '30M' );
+@ini_set( 'post_max_size', '30M');
+@ini_set( 'memory_limit', '20480M' );
+@ini_set( 'max_execution_time', '300' );
+@ini_set( 'max_input_time', '300' );
 
 /* Add any custom values between this line and the "stop editing" line. */
-
-
 
 /* That's all, stop editing! Happy publishing. */
 
