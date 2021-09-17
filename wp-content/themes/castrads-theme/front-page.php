@@ -48,7 +48,7 @@ get_header(); ?>
 <!-- How to Heat -->
 
 <div class="container">
-    <h2 class="section-heading"><?php _e('How to Heat'); ?></h2>
+    <a href="<?php echo site_url('/blog'); ?>"class="section-heading"><?php _e('How to Heat'); ?></a>
     <section>
 
         <?php
