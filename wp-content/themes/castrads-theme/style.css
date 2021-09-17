@@ -56,6 +56,11 @@ ul {
   list-style: none;
 }
 
+.container{
+  width: 100%;
+  margin: 0 auto;
+}
+
 .pr-2 {
   padding-right: 2rem;
 }
@@ -108,7 +113,7 @@ h2.banner-heading {
   width: 180px;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  padding: 12px 0;
+  padding: 12px 15px;
   text-align: center;
   color: #fff;
   margin: 0 auto;
@@ -607,19 +612,86 @@ footer #social-media-footer ul li:hover a .fa-instagram {
   color: #fc7267;
 }
 
-/* contact form */
+/* Contact Form 7 Styles
+---------------------------------*/
 
-.wpcf7 input,
-.wpcf7 textarea {
-  box-sizing: border-box;
-  width: 100%;
-  margin: 0;
-  padding: 0 16px;
-  height: 42px;
+.contact-page{
+  padding-top: 150px;
+  padding-bottom: 40px;
 }
 
-.wpcf7 textarea {
-  height: 100px;
+.hero .contact-page {
+  background: url("img/Castrads-01.jpg");
+}
+
+.wpcf7 {
+  padding-top: 20px;
+  background-color: #f0f0f0;
+}
+
+.wpcf7-form {
+  margin-left: 25px;
+  margin-right: 25px;
+  margin-top: 25px;
+}
+
+.wpcf7-textarea {
+  width: 85%;
+  height: auto;
+  box-shadow: none;
+}
+
+.wpcf7 input {
+  width: 85%;
+  box-shadow: none;
+  -webkit-appearance: none; 
+    -moz-appearance: none;
+    appearance: none;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    border-bottom: 2px solid rgba(51,51,51,.3);
+    padding-bottom: 8px;
+    background-color: transparent;
+    font-size: .9375rem;
+    color: #333;
+    border-radius: 0;
+}
+
+.wpcf7-text {
+  width: 85%;
+}
+
+.wpcf7-submit {
+  border: 2px solid rgba(255,255,255,.3);
+  font-size: .75rem;
+  display: block;
+  width: 180px;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  padding: 10px 0;
+  text-align: center;
+  color: #fff;
+  border: 2px solid rgba(51,51,51,.3);
+  color: #959595;
+  margin: 30px 0 0 0;
+  
+
+  /* font-size: 1rem;
+  display: block;
+  width: 180px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-align: center;
+  color: #fff;
+  border: 2px solid rgba(51, 51, 51, 0.3);
+  color: #959595;
+  margin: 24px 0 0 0;
+  padding: 10px 0; */
+}
+
+.wpcf7-list-item {
+  display: block;
 }
 
 /* 404 */
@@ -733,10 +805,6 @@ footer #social-media-footer ul li:hover a .fa-instagram {
     display: block;
   }
 
-  #searchbox {
-    display: none;
-  }
-
   #blogpost {
     width: 100%;
     border-left: 0;
@@ -766,7 +834,7 @@ footer #social-media-footer ul li:hover a .fa-instagram {
     font-size: 48px;
   }
 
-  .pr-2{
+  .pr-2 {
     padding-right: 0;
   }
 
@@ -793,31 +861,39 @@ footer #social-media-footer ul li:hover a .fa-instagram {
     text-align: center;
   }
 
-  footer #social-media-footer ul{
-
+  footer #social-media-footer ul {
     justify-content: center;
   }
-
 }
 
 /* banner media */
 @media (max-width: 767px) {
-.h1 .banner-heading {
-  margin-top: 130px;
+  .h1 .banner-heading {
+    margin-top: 130px;
+  }
+
+  .banner-menu {
+    display: block;
+  }
+
+  .banner-menu a {
+    margin: 10px 45px;
+  }
 }
 
-.banner-menu{
-  display: block;
+/* search media */
+@media (max-width: 767px) {
+  .searchbardiv {
+    
+  }
 }
 
-.banner-menu a {
-  margin: 10px 45px;
-}
-}
+/* container media */
 
 @media (min-width: 720px) {
   .container {
     width: 95%;
+
   }
   .card {
     width: 45%;
