@@ -103,7 +103,7 @@ function my_search_form($form)
 
 add_filter('get_search_form', 'my_search_form');
 
-
+add_theme_support( 'block-templates' );
 // remove from footer
 
 add_action('get_header', 'my_filter_head');

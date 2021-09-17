@@ -38,7 +38,7 @@ get_header(); ?>
         <?php
         $link = get_field('link');
         if ($link) : ?>
-            <a class="button" href="<?php echo esc_url($link); ?>"><?php _e('WHO ARE CASTRADS'); ?></a>
+            <a class="btn-readmore" href="<?php echo esc_url($link); ?>"><?php _e('WHO ARE CASTRADS'); ?></a>
         <?php endif; ?>
     </div>
 
