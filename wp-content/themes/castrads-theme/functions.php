@@ -22,8 +22,7 @@ function register_my_menus()
 {
     register_nav_menus(
         array(
-            'left-menu' => __('Left Menu'),
-            'right-menu' => __('Right Menu')
+            'main-menu' => __('Main Menu')
         )
     );
 }
@@ -89,8 +88,7 @@ function my_search_form($form)
                 <div class="input-group-btn">
                     <button class="btn btn-default"  id="searchsubmit"  type="submit">
                         <strong>Search</strong>
-                    </button>
-                    
+                    </button>    
                 </div>
             </div>
         </form>
@@ -100,10 +98,9 @@ function my_search_form($form)
 }
 
 
-
 add_filter('get_search_form', 'my_search_form');
 
-add_theme_support( 'block-templates' );
+add_theme_support('block-templates');
 // remove from footer
 
 add_action('get_header', 'my_filter_head');
@@ -112,7 +109,3 @@ function my_filter_head()
 {
     remove_action('wp_head', '_admin_bar_bump_cb');
 }
-
-
-
-

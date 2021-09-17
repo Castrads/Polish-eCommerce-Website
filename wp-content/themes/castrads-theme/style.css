@@ -56,7 +56,7 @@ ul {
   list-style: none;
 }
 
-.container{
+.container {
   width: 100%;
   margin: 0 auto;
 }
@@ -113,7 +113,7 @@ h2.banner-heading {
   width: 180px;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  padding: 12px 15px;
+  padding: 12px 10px;
   text-align: center;
   color: #fff;
   margin: 0 auto;
@@ -139,12 +139,6 @@ h2.banner-heading {
   color: #333;
 }
 
-@media (max-width: 768px) {
-  .banner-heading {
-    text-align: center;
-  }
-}
-
 /* Extra-Link header*/
 
 .extra-link {
@@ -161,6 +155,7 @@ h2.banner-heading {
   display: block;
   margin: 0 3px;
 }
+
 /****SEARCH****/
 
 .searchbardiv {
@@ -171,7 +166,6 @@ h2.banner-heading {
   right: 0px;
   left: 0;
   z-index: 1001;
-  /* width: 100px; */
   max-width: 100%;
   padding: 10px;
   margin: 0px;
@@ -179,7 +173,6 @@ h2.banner-heading {
 
 .buttonsearch {
   margin-right: 10px;
-
   color: black;
   height: 50px;
   padding: 0 13px;
@@ -338,25 +331,25 @@ header #social-media-header a .fa-instagram {
   z-index: 100;
   justify-content: center;
 }
-
+/* 
 .menu-right-menu-container,
 .menu-left-menu-container,
 .menu-left-menu-polish-container,
 .menu-right-menu-polish-container {
   width: 25%;
-}
+} */
 
 .main-navigation a {
-  color: rgb(255, 255, 255);
-  transition: 0.4s;
+  /* color: rgb(255, 255, 255);
+  transition: 0.4s; */
 }
-
+/* 
 .main-navigation a:hover {
   text-decoration: none;
   color: #897e4c;
-}
+} */
 
-.main-navigation ul {
+/* .main-navigation ul {
   display: flex;
   list-style: none;
   justify-content: space-around;
@@ -364,10 +357,37 @@ header #social-media-header a .fa-instagram {
   height: 100%;
   margin: 0;
   padding: 0;
-}
+} */
 
-.active {
-  color: #fc7267;
+@media only screen and (max-width: 1057px) {
+  #mega-menu-wrap-main-menu #mega-menu-main-menu li.mega-hide-on-mobile,
+  #mega-menu-wrap-main-menu
+    #mega-menu-main-menu
+    > li.mega-menu-megamenu
+    > ul.mega-sub-menu
+    > li.mega-hide-on-mobile,
+  #mega-menu-wrap-main-menu
+    #mega-menu-main-menu
+    > li.mega-menu-megamenu
+    > ul.mega-sub-menu
+    li.mega-menu-column
+    > ul.mega-sub-menu
+    > li.mega-menu-item.mega-hide-on-,
+  #mega-menu-wrap-main-menu
+    #mega-menu-main-menu
+    li.mega-menu-item-has-children.mega-hide-sub-menu-on-mobile
+    > a.mega-menu-link
+    > span.mega-indicator {
+    display: block;
+  }
+  #mega-menu-wrap-main-menu #mega-menu-main-menu a.mega-menu-link {
+    text-align: center;
+  }
+  #mega-menu-wrap-main-menu {
+    padding: 30px;
+    position: absolute;
+    left: 0;
+  }
 }
 
 /* logo */
@@ -378,6 +398,7 @@ header #social-media-header a .fa-instagram {
   align-items: center;
   color: white;
   transition: 0.4s;
+  position: absolute;
 }
 #logo-img img {
   height: 90px;
@@ -559,6 +580,7 @@ footer #social-media-footer ul li:hover a .fa-instagram {
 }
 
 /* Pagination */
+
 .pagination {
   padding: 8px;
   text-align: center;
@@ -612,10 +634,9 @@ footer #social-media-footer ul li:hover a .fa-instagram {
   color: #fc7267;
 }
 
-/* Contact Form 7 Styles
----------------------------------*/
+/* Contact Form 7 Styles*/
 
-.contact-page{
+.contact-page {
   padding-top: 150px;
   padding-bottom: 40px;
 }
@@ -644,18 +665,18 @@ footer #social-media-footer ul li:hover a .fa-instagram {
 .wpcf7 input {
   width: 85%;
   box-shadow: none;
-  -webkit-appearance: none; 
-    -moz-appearance: none;
-    appearance: none;
-    padding: 0;
-    margin: 0;
-    border: 0;
-    border-bottom: 2px solid rgba(51,51,51,.3);
-    padding-bottom: 8px;
-    background-color: transparent;
-    font-size: .9375rem;
-    color: #333;
-    border-radius: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  border-bottom: 2px solid rgba(51, 51, 51, 0.3);
+  padding-bottom: 8px;
+  background-color: transparent;
+  font-size: 0.9375rem;
+  color: #333;
+  border-radius: 0;
 }
 
 .wpcf7-text {
@@ -663,31 +684,18 @@ footer #social-media-footer ul li:hover a .fa-instagram {
 }
 
 .wpcf7-submit {
-  border: 2px solid rgba(255,255,255,.3);
-  font-size: .75rem;
-  display: block;
-  width: 180px;
-  text-transform: uppercase;
-  letter-spacing: .1em;
-  padding: 10px 0;
-  text-align: center;
-  color: #fff;
-  border: 2px solid rgba(51,51,51,.3);
-  color: #959595;
-  margin: 30px 0 0 0;
-  
-
-  /* font-size: 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  font-size: 0.75rem;
   display: block;
   width: 180px;
   text-transform: uppercase;
   letter-spacing: 0.1em;
+  padding: 10px 0;
   text-align: center;
   color: #fff;
   border: 2px solid rgba(51, 51, 51, 0.3);
   color: #959595;
-  margin: 24px 0 0 0;
-  padding: 10px 0; */
+  margin: 30px 0 0 0;
 }
 
 .wpcf7-list-item {
@@ -735,16 +743,6 @@ footer #social-media-footer ul li:hover a .fa-instagram {
   display: inline-block;
 }
 
-@media (max-width: 768px) {
-  .home-ourstory,
-  .ourstory-left,
-  .ourstory-right,
-  .ourstory-img {
-    display: block;
-    max-width: 100%;
-  }
-}
-
 /********Showroom*******/
 .showroom {
   padding: 35px;
@@ -782,14 +780,6 @@ footer #social-media-footer ul li:hover a .fa-instagram {
   object-fit: cover;
 }
 
-@media (max-width: 767px) {
-  .showroom .grid .item {
-    width: 100%;
-    flex: 0 0 100%;
-    max-width: 100%;
-  }
-}
-
 /* media queries */
 
 @media (max-width: 900px) {
@@ -825,8 +815,41 @@ footer #social-media-footer ul li:hover a .fa-instagram {
   }
 }
 
+/* showrooms media */
+@media (max-width: 768px) {
+  .showroom .grid .item {
+    width: 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+/* home ourstory media */
+@media (max-width: 768px) {
+  .home-ourstory,
+  .ourstory-left,
+  .ourstory-right,
+  .ourstory-img {
+    display: block;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 975px) {
+  .home-ourstory,
+  .ourstory-left,
+  .ourstory-right,
+  .ourstory-img {
+    display: block;
+    max-width: 100%;
+  }
+  .banner-menu a {
+    margin: 20px 8px;
+  }
+}
+
 /* footer media */
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .container {
     width: 100%;
   }
@@ -867,7 +890,7 @@ footer #social-media-footer ul li:hover a .fa-instagram {
 }
 
 /* banner media */
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .h1 .banner-heading {
     margin-top: 130px;
   }
@@ -881,10 +904,9 @@ footer #social-media-footer ul li:hover a .fa-instagram {
   }
 }
 
-/* search media */
-@media (max-width: 767px) {
-  .searchbardiv {
-    
+@media (max-width: 768px) {
+  .banner-heading {
+    text-align: center;
   }
 }
 
@@ -893,7 +915,6 @@ footer #social-media-footer ul li:hover a .fa-instagram {
 @media (min-width: 720px) {
   .container {
     width: 95%;
-
   }
   .card {
     width: 45%;
@@ -910,5 +931,21 @@ footer #social-media-footer ul li:hover a .fa-instagram {
   }
   .menu-toggle {
     display: none;
+  }
+
+  /* menu media */
+
+}
+@media (min-width: 1040px) {
+  #mega-menu-wrap-main-menu
+    #mega-menu-main-menu
+    > li.mega-menu-item
+    > a.mega-menu-link {
+    padding-left: 40px;
+  }
+  #mega-menu-wrap-main-menu
+    #mega-menu-main-menu
+    > li.mega-menu-item:nth-child(4) {
+    padding-left: 200px;
   }
 }
