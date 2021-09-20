@@ -331,33 +331,6 @@ header #social-media-header a .fa-instagram {
   z-index: 100;
   justify-content: center;
 }
-/* 
-.menu-right-menu-container,
-.menu-left-menu-container,
-.menu-left-menu-polish-container,
-.menu-right-menu-polish-container {
-  width: 25%;
-} */
-
-.main-navigation a {
-  /* color: rgb(255, 255, 255);
-  transition: 0.4s; */
-}
-/* 
-.main-navigation a:hover {
-  text-decoration: none;
-  color: #897e4c;
-} */
-
-/* .main-navigation ul {
-  display: flex;
-  list-style: none;
-  justify-content: space-around;
-  align-items: center;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-} */
 
 @media only screen and (max-width: 1057px) {
   #mega-menu-wrap-main-menu #mega-menu-main-menu li.mega-hide-on-mobile,
@@ -932,17 +905,16 @@ footer #social-media-footer ul li:hover a .fa-instagram {
   .menu-toggle {
     display: none;
   }
-
-  /* menu media */
-
 }
+
+ /* menu media */
+
 @media (min-width: 1040px) {
-  #mega-menu-wrap-main-menu
-    #mega-menu-main-menu
-    > li.mega-menu-item
-    > a.mega-menu-link {
-    padding-left: 40px;
+  #mega-menu-wrap-main-menu #mega-menu-main-menu{
+    margin-left: -48px;
   }
+
+
   #mega-menu-wrap-main-menu
     #mega-menu-main-menu
     > li.mega-menu-item:nth-child(4) {
