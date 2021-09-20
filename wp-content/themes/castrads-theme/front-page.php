@@ -8,16 +8,16 @@ get_header(); ?>
 
 <div id="banner">
     <h1 class="banner-heading"><?php _e('WE MAKE CAST IRON RADIATORS', 'Castrads'); ?></h1>
-    <h2 class="banner-heading"><?php _e('Designed for the modern home'); ?></h2>
+    <h2 class="banner-heading"><?php _e('Designed for the modern home', 'Castrads'); ?></h2>
     <div class=banner-menu>
         <a class="banner-menu-style" href="<?php echo site_url('/products'); ?>">
-            <?php _e('Shop products'); ?>
+            <?php _e('Shop products', 'Castrads'); ?>
         </a>
         <a class="banner-menu-style" href="<?php echo site_url('/inspiration'); ?>">
-            <?php _e('Order a brochure'); ?>
+            <?php _e('Order a brochure', 'Castrads'); ?>
         </a>
         <a class="banner-menu-style" href="<?php echo site_url('/inspiration'); ?>">
-            <?php _e('Book a consultation'); ?>
+            <?php _e('Book a consultation', 'Castrads'); ?>
         </a>
     </div>
 </div>
@@ -38,7 +38,7 @@ get_header(); ?>
         <?php
         $link = get_field('link');
         if ($link) : ?>
-            <a class="btn-readmore" href="<?php echo esc_url($link); ?>"><?php _e('WHO ARE CASTRADS'); ?></a>
+            <a class="btn-readmore" href="<?php echo esc_url($link); ?>"><?php _e('WHO ARE CASTRADS', 'Castrads'); ?></a>
         <?php endif; ?>
     </div>
 
@@ -48,7 +48,7 @@ get_header(); ?>
 <!-- How to Heat -->
 
 <div class="container">
-    <a href="<?php echo site_url('/blog'); ?>"class="section-heading"><?php _e('How to Heat'); ?></a>
+    <a href="<?php echo site_url('/blog'); ?>"class="section-heading"><?php _e('How to Heat', 'Castrads'); ?></a>
     <section>
 
         <?php
@@ -78,7 +78,7 @@ get_header(); ?>
                     <p>
                         <?php echo wp_trim_words(get_the_excerpt(), 30); ?>
                     </p>
-                    <a href="<?php the_permalink(); ?>" class="btn-readmore"><?php _e('Read more'); ?></a>
+                    <a href="<?php the_permalink(); ?>" class="btn-readmore"><?php _e('Read more', 'Castrads'); ?></a>
                 </div>
             </div>
 
@@ -91,7 +91,7 @@ get_header(); ?>
     <!-- showrooms -->
 
     <div class='showroom'>
-        <h2 class="showroom-heading"><?php _e('Visit a Showroom'); ?></h2>
+        <h2 class="showroom-heading"><?php _e('Visit a Showroom', 'Castrads'); ?></h2>
         <?php get_template_part('template-parts/home-showroom'); ?>
     </div>
 </div>
