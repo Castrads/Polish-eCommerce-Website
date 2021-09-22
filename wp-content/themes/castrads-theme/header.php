@@ -29,7 +29,7 @@
             </div>
 
         </nav>
-        <div class="extra-link">
+        <!-- <div class="extra-link">
 
             <a href="#"><i class="fa fa-shopping-cart"></i></a>
             <a href="#"><i class="fas fa-user-alt"></i></a>
@@ -38,7 +38,7 @@
                 <i class="fa fa-times openclosesearch" style="display:none"></i>
             </button>
             <?php get_search_form(); ?>
-        </div>
+        </div> -->
         </div>
     </header>
 
