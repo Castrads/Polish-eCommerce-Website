@@ -19,14 +19,14 @@
 <body>
 
     <header class="header">
-
-        <nav class="main-navigation">
-            <?php wp_nav_menu(array('theme_location' => 'main-menu')); ?>
-            <div id="logo-img">
+      <div id="logo-img">
                 <a href="<?php echo site_url(''); ?>">
                     <img src=" <?php echo get_template_directory_uri(); ?>/img/logo.svg" alt="Logo">
                 </a>
             </div>
+        <nav class="main-navigation">
+            <?php wp_nav_menu(array('theme_location' => 'main-menu')); ?>
+      
 
         </nav>
         <!-- <div class="extra-link">
