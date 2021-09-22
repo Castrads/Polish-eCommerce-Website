@@ -6,7 +6,7 @@ Description: the official theme for Castrads
 
 @import url("https://fonts.googleapis.com/css?family=Rokkitt%3A100%2C200%2C300%2Cregular%2C500%2C600%2C700%2C800%2C900%7CRoboto%3A100%2C100italic%2C300%2C300italic%2Cregular%2Citalic%2C500%2C500italic%2C700%2C700italic%2C900%2C900italic%7CRoboto&amp;subset=vietnamese%2Clatin%2Clatin-ext%2Ccyrillic-ext%2Ccyrillic%2Cgreek-ext%2Cgreek&amp;display=swap");
 body {
-    font-family: "Rokkitt", sans-serif;
+    font-family: "Roboto", sans-serif;
     margin: 0;
 }
 
@@ -16,18 +16,18 @@ html {
 
 p {
     line-height: 1.5;
-    font-family: "Helvetica", sans-serif;
+    font-family: "Helvetica Neue", sans-serif;
 }
 
 a {
     font-family: "Roboto", sans-serif;
 }
 
-.input,
+input,
 textarea {
     height: 32px;
     padding: 8px 16px;
-    font-family: "Rokkitt", "sans-serif";
+    font-family: "Roboto", "sans-serif";
     font-size: 20px;
     border: none;
 }
@@ -35,6 +35,7 @@ textarea {
 input:focus,
 textarea:focus {
     outline: none;
+    color: black;
 }
 
 .main {
@@ -65,13 +66,12 @@ textarea:focus {
     color: white;
 }
 
-
-/* banner heading */
-
 h1.banner-heading {
     color: white;
     font-size: 40px;
-    font-family: "Rokkitt", serif;
+    font-family: "Roboto", serif;
+    padding-bottom: 50px;
+    margin-top: -170px;
 }
 
 h2.banner-heading {
@@ -79,6 +79,7 @@ h2.banner-heading {
     font-size: 28px;
     font-family: "Roboto", sans-serif;
     font-weight: normal;
+    padding-bottom: 40px;
 }
 
 .banner-menu {
@@ -99,7 +100,7 @@ h2.banner-heading {
     display: block;
     width: 180px;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    /* letter-spacing: 0.1em; */
     padding: 12px 10px;
     text-align: center;
     color: #fff;
@@ -125,9 +126,6 @@ h2.banner-heading {
     background-color: #fff;
     color: #333;
 }
-
-
-/* header */
 
 
 /* Extra-Link header*/
@@ -279,7 +277,7 @@ select:-webkit-autofill:focus {
 }
 
 
-/* icons header */
+/* header & icons header */
 
 .header .fa-shopping-cart {
     font-size: 16px;
@@ -299,6 +297,9 @@ select:-webkit-autofill:focus {
     left: 0;
     right: 0;
     z-index: 9999;
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
 }
 
 header #social-media-header a .fa-facebook,
@@ -317,7 +318,6 @@ header #social-media-header a .fa-instagram {
 .main-navigation {
     height: 110px;
     background: rgb(255, 255, 255);
-    width: 100%;
     margin: 0;
     font-family: "Roboto", sans-serif;
     font-size: 17px;
@@ -325,12 +325,12 @@ header #social-media-header a .fa-instagram {
     justify-content: space-between;
     padding: 0 16px 0 0;
     box-sizing: border-box;
-    z-index: 100;
     justify-content: center;
+    /* z-index: 100; */
 }
 
 @media only screen and (max-width: 1057px) {
-    #mega-menu-wrap-main-menu #mega-menu-main-menu li.mega-hide-on-mobile,
+    /* #mega-menu-wrap-main-menu #mega-menu-main-menu li.mega-hide-on-mobile,
     #mega-menu-wrap-main-menu #mega-menu-main-menu>li.mega-menu-megamenu>ul.mega-sub-menu>li.mega-hide-on-mobile,
     #mega-menu-wrap-main-menu #mega-menu-main-menu>li.mega-menu-megamenu>ul.mega-sub-menu li.mega-menu-column>ul.mega-sub-menu>li.mega-menu-item.mega-hide-on-,
     #mega-menu-wrap-main-menu #mega-menu-main-menu li.mega-menu-item-has-children.mega-hide-sub-menu-on-mobile>a.mega-menu-link>span.mega-indicator {
@@ -343,19 +343,16 @@ header #social-media-header a .fa-instagram {
         padding: 30px;
         position: absolute;
         left: 0;
-    }
+    } */
 }
 
 
 /* logo */
 
 #logo-img {
-    display: flex;
     height: 100%;
-    align-items: center;
-    color: white;
-    transition: 0.4s;
-    position: absolute;
+    padding-left: 20px;
+    /* position: absolute; */
 }
 
 #logo-img img {
@@ -381,13 +378,14 @@ header #social-media-header a .fa-instagram {
 }
 
 .section-heading {
-    font-size: 32px;
-    font-family: "Rokkitt", sans-serif;
+    font-size: 2rem;
+    font-family: "Roboto", sans-serif;
     border-left: 3px solid white;
     border-right: 3px solid white;
     transition: all 0.4s;
     display: inline-block;
     padding: 4px 32px;
+    font-weight: 500;
 }
 
 #section-source p {
@@ -410,7 +408,7 @@ header #social-media-header a .fa-instagram {
     color: #3c3c3b;
     font-size: 14px;
     padding: 16px;
-    font-family: "Rokkitt", serif;
+    font-family: "Roboto", serif;
 }
 
 .card-meta-blogpost a {
@@ -428,6 +426,7 @@ header #social-media-header a .fa-instagram {
     padding-bottom: 5px;
     display: inline-block;
     margin-bottom: 30px;
+    padding-top: 10px;
 }
 
 
@@ -454,13 +453,12 @@ footer #left-footer {
 
 footer #left-footer ul {
     line-height: 1.5;
+    padding-top: 10px;
 }
 
 footer #left-footer li {
     font-size: 14px;
 }
-
-footer #mid-footer {}
 
 footer #mid-footer ul {
     line-height: 1.5;
@@ -488,6 +486,7 @@ footer #social-media-footer ul {
     display: flex;
     justify-content: left;
     line-height: 1.5;
+    padding-top: 10px;
 }
 
 footer #social-media-footer li {
@@ -522,7 +521,7 @@ footer #social-media-footer ul li:hover a .fa-instagram {
 
 .page-heading {
     font-size: 32px;
-    font-family: "Rokkitt", sans-serif;
+    font-family: "Roboto", sans-serif;
     border-left: 3px solid black;
     border-right: 3px solid black;
     transition: all 0.4s;
@@ -535,11 +534,19 @@ footer #social-media-footer ul li:hover a .fa-instagram {
     color: #333;
     font-size: 14px;
     padding-left: 8px;
-    font-family: "Rokkitt", serif;
+    font-family: "Roboto", serif;
 }
 
 .card-meta a {
     color: #333;
+}
+
+.card .card-description {
+    padding: 20px 0;
+}
+
+.card h3 {
+    padding: 10px 0px;
 }
 
 
@@ -606,14 +613,6 @@ footer #social-media-footer ul li:hover a .fa-instagram {
 .contact-page {
     padding-top: 150px;
     padding-bottom: 40px;
-}
-
-.wpcf7 {}
-
-.wpcf7 input,
-select,
-textarea {
-    color: red;
 }
 
 .wpcf7-form {
@@ -698,7 +697,8 @@ textarea {
 }
 
 .ourstory-right h2 {
-    font-size: 2.5rem;
+    font-size: 2rem;
+    padding-bottom: 20px;
 }
 
 .ourstory-right a {
@@ -707,6 +707,7 @@ textarea {
     letter-spacing: 0.1em;
     padding-bottom: 5px;
     display: inline-block;
+    padding-top: 10px;
 }
 
 
@@ -735,7 +736,7 @@ textarea {
 }
 
 .showroom-heading {
-    font-size: 32px;
+    font-size: 2rem;
 }
 
 .showroom h3 {
@@ -906,10 +907,10 @@ textarea {
 /* menu media */
 
 @media (min-width: 1040px) {
-    #mega-menu-wrap-main-menu #mega-menu-main-menu {
+    /* #mega-menu-wrap-main-menu #mega-menu-main-menu {
         margin-left: -48px;
     }
     #mega-menu-wrap-main-menu #mega-menu-main-menu>li.mega-menu-item:nth-child(4) {
         padding-left: 200px;
-    }
+    } */
 }
