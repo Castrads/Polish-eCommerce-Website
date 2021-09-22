@@ -20,11 +20,11 @@
 
 define('FORCE_SSL_ADMIN', true);
 
-define('WP_HOME', 'https://www.castrads.com/pl/');
+define('WP_HOME', 'https://www.castrads.pl/');
 define('WP_SITEURL', 'https://www.castrads.pl/');
 
-define('WP_CONTENT_URL', 'https://www.castrads.pl/wp-content');
-define('WP_CONTENT_DIR', dirname(__FILE__) . '/wp-content');
+//define('WP_CONTENT_URL', 'https://www.castrads.pl/wp-content');
+//define('WP_CONTENT_DIR', dirname(__FILE__) . '/wp-content');
 
 //define( 'WP_PLUGIN_DIR', dirname(__FILE__) . '/wp-content/plugins' );
 //define( 'WP_PLUGIN_URL', 'https://www.castrads.pl/wp-content/plugins' );

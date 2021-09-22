@@ -1,3 +1,4 @@
+
 /* 
 Theme Name: Castrads
 Description: the official theme for Castrads
@@ -388,7 +389,7 @@ header #social-media-header a .fa-instagram {
 
 /* section */
 
-section {
+.section {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
