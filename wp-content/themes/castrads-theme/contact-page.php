@@ -8,9 +8,9 @@ get_header(); ?>
 
 <div class="container contact-page">
 
-    <section class="hero contact-page">
+    <!-- <section class="hero contact-page">
         <h2 class="section-heading"><?php _e('Contact Us', 'Castrads'); ?></h2>
-    </section>
+    </section> -->
 
     <?php
     the_content(sprintf(

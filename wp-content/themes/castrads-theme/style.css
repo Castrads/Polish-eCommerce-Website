@@ -388,7 +388,7 @@ header #social-media-header a .fa-instagram {
 
 /* section */
 
-section {
+.section {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
@@ -445,7 +445,7 @@ section {
 /* footer */
 
 .footer {
-  background: black;
+  background: #181818;
   color: #eee;
 }
 
@@ -614,13 +614,13 @@ footer #social-media-footer ul li:hover a .fa-instagram {
   padding-bottom: 40px;
 }
 
-.hero .contact-page {
-  background: url("img/Castrads-01.jpg");
+.wpcf7 {
 }
 
-.wpcf7 {
-  padding-top: 20px;
-  background-color: #f0f0f0;
+.wpcf7 input,
+select,
+textarea {
+  color: red;
 }
 
 .wpcf7-form {
@@ -631,7 +631,7 @@ footer #social-media-footer ul li:hover a .fa-instagram {
 
 .wpcf7-textarea {
   width: 85%;
-  height: auto;
+  height: 40px;
   box-shadow: none;
 }
 
@@ -665,8 +665,6 @@ footer #social-media-footer ul li:hover a .fa-instagram {
   letter-spacing: 0.1em;
   padding: 10px 0;
   text-align: center;
-  color: #fff;
-  border: 2px solid rgba(51, 51, 51, 0.3);
   color: #959595;
   margin: 30px 0 0 0;
 }
@@ -907,13 +905,12 @@ footer #social-media-footer ul li:hover a .fa-instagram {
   }
 }
 
- /* menu media */
+/* menu media */
 
 @media (min-width: 1040px) {
-  #mega-menu-wrap-main-menu #mega-menu-main-menu{
+  #mega-menu-wrap-main-menu #mega-menu-main-menu {
     margin-left: -48px;
   }
-
 
   #mega-menu-wrap-main-menu
     #mega-menu-main-menu
