@@ -1,5 +1,6 @@
 <?php
 
+use ACFML\FieldState;
 use ACFML\Repeater\Shuffle\Strategy;
 
 /**
@@ -12,10 +13,6 @@ class WPML_ACF_Repeater_Shuffle {
 	const ACTION_SYNCHRONISE = 'wpml_synchronise_acf_fields_translations_nonce';
 	const SYNCHRONISE_WP_OPTION_NAME = 'acfml_synchronise_repeater_fields';
 
-	/**
-	 * @var array Meta data before the shuffle.
-	 */
-	private $meta_data_before_move;
 	/**
 	 * @var array Meta data after the shuffle.
 	 */
@@ -39,14 +36,21 @@ class WPML_ACF_Repeater_Shuffle {
 	 * @var bool|int
 	 */
 	private $trid;
+	
+	/**
+	 * @var FieldState
+	 */
+	private $field_state;
 
 	/**
 	 * WPML_ACF_Repeater_Shuffle constructor.
 	 *
-	 * @param Strategy $shuffled
+	 * @param Strategy    $shuffled
+     * @param FieldState $field_state
 	 */
-	public function __construct( Strategy $shuffled ) {
-		$this->shuffled = $shuffled;
+	public function __construct( Strategy $shuffled, FieldState $field_state ) {
+		$this->shuffled    = $shuffled;
+		$this->field_state = $field_state;
 	}
 
 	/**
@@ -107,58 +111,31 @@ class WPML_ACF_Repeater_Shuffle {
 	 * @param int $post_id ID of the post being saved.
 	 */
 	public function store_state_before( $post_id = 0 ) {
-		if ( $this->synchronise_option_selected() && $this->shuffled->isValidId( $post_id ) && ! $this->meta_data_before_move ) {
-			$this->meta_data_before_move = $this->get_cleaned_meta_data( $post_id );
+		if ( $this->synchronise_option_selected() ) {
+			$this->field_state->storeStateBefore( $post_id );
 		}
 	}
+
 
 	/**
 	 * @param int $post_id ID of the post being saved.
 	 */
 	public function update_translated_repeaters( $post_id = 0 ) {
 		if ( $this->should_translation_update_run( $post_id ) ) {
-			$this->meta_data_after_move = $this->get_cleaned_meta_data( $post_id );
-			foreach ( $this->meta_data_after_move as $key => $value ) {
-				$key_change = $this->get_keys_for_meta_value_changed( $key, $value );
-				if ( $key_change ) {
-					$translations = $this->shuffled->getTranslations( $post_id );
-					if ( $translations ) {
-						$this->remove_deprecated_meta( $translations, $key_change['was'], $key_change['is'] );
-					}
-				}
-			}
+			$this->meta_data_after_move = $this->field_state->getCurrentMetadata( $post_id );
 
+            foreach ( $this->meta_data_after_move as $key => $value ) {
+                $key_change = $this->get_keys_for_meta_value_changed( $key, $value );
+                if ( $key_change ) {
+                    $translations = $this->shuffled->getTranslations( $post_id );
+                    if ( $translations ) {
+                        $this->remove_deprecated_meta( $translations, $key_change['was'], $key_change['is'] );
+                    }
+                }
+            }
+            
 			$this->readd_meta();
-
 		}
-	}
-
-	/**
-	 * Returns always meta data array with single values and always related to ACF fields.
-	 *
-	 * When get_post_meta is used without key value, it always works like the third parameter is false so it always
-	 * returns array of array values. This function flattens it look like get_post_meta has been called with true as
-	 * third parameter.
-	 *
-	 * Additionally removes from array metadata which are not set for ACF fields
-	 *
-	 * @param int $post_id Post ID.
-	 *
-	 * @return array Flatten array.
-	 */
-	private function get_cleaned_meta_data( $post_id ) {
-		$meta_data = $this->shuffled->getAllMeta( $post_id );
-		if ( is_array( $meta_data ) ) {
-			foreach ( $meta_data as $key => $maybe_array ) {
-				$acf_field = get_field_object( $key, $post_id );
-				if ( ! $acf_field ) {
-					unset( $meta_data[ $key ] );
-				} elseif ( is_array( $maybe_array ) ) {
-					$meta_data[ $key ] = end( $maybe_array );
-				}
-			}
-		}
-		return $meta_data;
 	}
 
 	/**
@@ -169,7 +146,7 @@ class WPML_ACF_Repeater_Shuffle {
 	 * @return bool
 	 */
 	private function should_translation_update_run( $post_id = 0 ) {
-		return $this->synchronise_option_selected() && $this->shuffled->isValidId( $post_id ) && $this->meta_data_before_move;
+		return $this->synchronise_option_selected() && $this->shuffled->isValidId( $post_id ) && $this->field_state->getStateBefore();
 	}
 
 	/**
@@ -224,7 +201,7 @@ class WPML_ACF_Repeater_Shuffle {
 	 * @return array
 	 */
 	private function keys_before_move( $meta_value_after_move ) {
-		return array_keys( $this->meta_data_before_move, $meta_value_after_move, true );
+		return array_keys( $this->field_state->getStateBefore(), $meta_value_after_move, true );
 	}
 
 	/**
@@ -351,11 +328,11 @@ class WPML_ACF_Repeater_Shuffle {
 	public function revertFieldValuesForSignature( $customFields, $postId = 0 ) {
 		if ( $this->synchronise_option_selected() && is_array( $customFields ) && ! empty( $customFields ) && is_numeric( $postId ) && $postId > 0 ) {
 			foreach ( $customFields as $key => $value ) {
-				if ( isset( $this->meta_data_before_move[ $key ] )
+				if ( isset( $this->field_state->getStateBefore()[ $key ] )
 					 && $this->isChildOfRepeaterField( $key, $postId )
 					 && $this->get_keys_for_meta_value_changed( $key, $value )
 				) {
-					$customFields[ $key ] = $this->meta_data_before_move[ $key ];
+					$customFields[ $key ] = $this->field_state->getStateBefore()[ $key ];
 				}
 			}
 		}
@@ -372,7 +349,7 @@ class WPML_ACF_Repeater_Shuffle {
 	 * @return bool
 	 */
 	private function isChildOfRepeaterField( $key, $postId ) {
-		$acfFieldObject = get_field_object( $key, $postId, false, false );
+		$acfFieldObject = get_field_object( $key, $postId );
 		if ( isset( $acfFieldObject['parent'] )
 			 && $acfFieldObject['parent'] > 0 ) {
 			$fieldParent = get_post( $acfFieldObject['parent'] );

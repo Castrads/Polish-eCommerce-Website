@@ -173,7 +173,7 @@ class WPML_ACF_Blocks {
 	}
 
 	/**
-	 * @param string $text ACF field value.
+	 * @param string|array $text ACF field value.
 	 *
 	 * @return string
 	 */
@@ -208,15 +208,14 @@ class WPML_ACF_Blocks {
 	 * @return bool
 	 */
 	private function isTranslatableInPreferences( $fieldName ) {
-		$display        = true;
 		$acfField = acf_get_field( $fieldName );
 		if ( ! $acfField ) {
 			$acfField = $this->maybeGetSubfield( $fieldName );
 		}
 		if ( isset( $acfField['wpml_cf_preferences'] ) ) {
-			$display = in_array( (int) $acfField['wpml_cf_preferences'], [ WPML_TRANSLATE_CUSTOM_FIELD, WPML_COPY_ONCE_CUSTOM_FIELD ], true );
+			return (int) $acfField['wpml_cf_preferences'] === WPML_TRANSLATE_CUSTOM_FIELD;
 		}
-		return $display;
+		return true;
 	}
 
 	/**
@@ -225,7 +224,6 @@ class WPML_ACF_Blocks {
 	 * Handles cases for repeater and flexible subfields.
 	 *
 	 * @param string $fieldName      Processed field name.
-	 * @param int    $originalPostId Processed post.
 	 *
 	 * @return array|false ACF field object (array) or false.
 	 */

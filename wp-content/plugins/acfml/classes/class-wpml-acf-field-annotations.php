@@ -145,9 +145,9 @@ class WPML_ACF_Field_Annotations {
 		$field_object = get_field_object( $name, $post_id );
 
 		if ( $field_object && isset( $field_object['label'] ) && isset( $field_object['type'] ) ) {
-			if ( $this->acf_field_settings->field_should_be_set_to_copy( $field_object ) ) {
+			if ( $this->acf_field_settings->field_should_be_set_to_copy_once( $field_object ) ) {
 				$field_data = [
-					__( 'This type of ACF field will always be set to "Copy".', 'acfml' ),
+					__( 'This type of ACF field will always be set to "Copy once".', 'acfml' ),
 				];
 			} else {
 				$field_data = array(

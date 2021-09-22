@@ -156,7 +156,7 @@ if ( ! class_exists( 'Astra_Enqueue_Scripts' ) ) {
 					),
 				);
 
-				if ( defined( 'ASTRA_EXT_VER' ) ) {
+				if ( defined( 'ASTRA_EXT_VER' ) && version_compare( ASTRA_EXT_VER, '3.5.9', '<' ) ) {
 					$default_assets['js']['astra-theme-js-pro'] = 'frontend-pro';
 				}
 
@@ -355,8 +355,9 @@ if ( ! class_exists( 'Astra_Enqueue_Scripts' ) ) {
 
 			$css_uri = ASTRA_THEME_URI . 'inc/assets/css/block-editor-styles' . $rtl . '.css';
 			$js_uri  = ASTRA_THEME_URI . 'inc/assets/js/block-editor-script.js';
-
+			/** @psalm-suppress InvalidArgument */ // phpcs:ignore Generic.Commenting.DocComment.MissingShort
 			wp_enqueue_style( 'astra-block-editor-styles', $css_uri, false, ASTRA_THEME_VERSION, 'all' );
+			/** @psalm-suppress InvalidArgument */ // phpcs:ignore Generic.Commenting.DocComment.MissingShort
 			wp_enqueue_script( 'astra-block-editor-script', $js_uri, false, ASTRA_THEME_VERSION, 'all' );
 
 			// Render fonts in Gutenberg layout.

@@ -4,15 +4,20 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit0170ad3dfe88817098ab605b6084fdce
+class ComposerStaticInitec560c525f053e59033cd2a6066c1160
 {
     public static $classMap = array (
         'ACFML\\Convertable\\LinkFieldData' => __DIR__ . '/../..' . '/classes/Convertable/LinkFieldData.php',
         'ACFML\\FieldReferenceAdjuster' => __DIR__ . '/../..' . '/classes/class-wpml-acf-field-reference-adjuster.php',
+        'ACFML\\FieldState' => __DIR__ . '/../..' . '/classes/class-wpml-acf-field-state.php',
         'ACFML\\MigrateBlockPreferences' => __DIR__ . '/../..' . '/classes/class-wpml-acf-migrate-block-preferences.php',
         'ACFML\\Repeater\\Shuffle\\Post' => __DIR__ . '/../..' . '/classes/strategy/repeater-shuffle/post.php',
         'ACFML\\Repeater\\Shuffle\\Strategy' => __DIR__ . '/../..' . '/classes/strategy/repeater-shuffle/strategy.php',
         'ACFML\\Repeater\\Shuffle\\Term' => __DIR__ . '/../..' . '/classes/strategy/repeater-shuffle/term.php',
+        'ACFML\\Tools\\Export' => __DIR__ . '/../..' . '/classes/Tools/Export.php',
+        'ACFML\\Tools\\Import' => __DIR__ . '/../..' . '/classes/Tools/Import.php',
+        'ACFML\\Tools\\Local' => __DIR__ . '/../..' . '/classes/Tools/Local.php',
+        'ACFML\\Tools\\Transfer' => __DIR__ . '/../..' . '/classes/Tools/Transfer.php',
         'WPML_ACF' => __DIR__ . '/../..' . '/classes/class-wpml-acf.php',
         'WPML_ACF_Attachments' => __DIR__ . '/../..' . '/classes/class-wpml-acf-attachments.php',
         'WPML_ACF_Blocks' => __DIR__ . '/../..' . '/classes/class-wpml-acf-blocks.php',
@@ -45,12 +50,15 @@ class ComposerStaticInit0170ad3dfe88817098ab605b6084fdce
         'WPML_ACF_Void_Field' => __DIR__ . '/../..' . '/classes/class-wpml-acf-void-field.php',
         'WPML_ACF_Worker' => __DIR__ . '/../..' . '/classes/class-wpml-acf-worker.php',
         'WPML_ACF_Xliff' => __DIR__ . '/../..' . '/classes/class-wpml-acf-xliff.php',
+        'WPML_Core_Version_Check' => __DIR__ . '/..' . '/wpml-shared/wpml-lib-dependencies/src/dependencies/class-wpml-core-version-check.php',
+        'WPML_Dependencies' => __DIR__ . '/..' . '/wpml-shared/wpml-lib-dependencies/src/dependencies/class-wpml-dependencies.php',
+        'WPML_PHP_Version_Check' => __DIR__ . '/..' . '/wpml-shared/wpml-lib-dependencies/src/dependencies/class-wpml-php-version-check.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->classMap = ComposerStaticInit0170ad3dfe88817098ab605b6084fdce::$classMap;
+            $loader->classMap = ComposerStaticInitec560c525f053e59033cd2a6066c1160::$classMap;
 
         }, null, ClassLoader::class);
     }
