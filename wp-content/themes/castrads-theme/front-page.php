@@ -49,7 +49,7 @@ get_header(); ?>
 
 <div class="container">
     <a href="<?php echo site_url('/blog'); ?>"class="section-heading"><?php _e('How to Heat', 'Castrads'); ?></a>
-    <section>
+    <section class="section">
 
         <?php
         $args = array(
