@@ -22,7 +22,7 @@ a {
     font-family: "Roboto", sans-serif;
 }
 
-input,
+.input,
 textarea {
     height: 32px;
     padding: 8px 16px;
@@ -31,7 +31,7 @@ textarea {
     border: none;
 }
 
-input:focus,
+.input:focus,
 textarea:focus {
     outline: none;
     color: black;
@@ -301,7 +301,13 @@ select:-webkit-autofill:focus {
     background-color: white;
 }
 
-header #social-media-header a .fa-facebook,
+.header .container {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+/* header #social-media-header a .fa-facebook,
 header #social-media-header a .fa-linkedin,
 header #social-media-header a .fa-pinterest,
 header #social-media-header a .fa-twitter,
@@ -309,7 +315,7 @@ header #social-media-header a .fa-instagram {
     color: black;
     position: absolute;
     font-size: 20px;
-}
+} */
 
 
 /*navigation */

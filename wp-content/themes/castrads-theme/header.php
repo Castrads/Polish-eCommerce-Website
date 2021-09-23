@@ -11,6 +11,7 @@
     <meta property="og:description" content="Castrads...">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://Castrads.com/pl">
+    <link rel="alternate" href="https://Castrads.com/pl" hreflang="pl" />
     <link rel="shortcut icon" href="favicon.ico" />
     <?php wp_head(); ?>
     <title><?php _e('Castrads - Designed for the modern home'); ?></title>
@@ -19,17 +20,18 @@
 <body>
 
     <header class="header">
-      <div id="logo-img">
+        <div class="container">
+            <div id="logo-img">
                 <a href="<?php echo site_url(''); ?>">
                     <img src=" <?php echo get_template_directory_uri(); ?>/img/logo.svg" alt="Logo">
                 </a>
             </div>
-        <nav class="main-navigation">
-            <?php wp_nav_menu(array('theme_location' => 'main-menu')); ?>
-      
+            <nav class="main-navigation">
+                <?php wp_nav_menu(array('theme_location' => 'main-menu')); ?>
 
-        </nav>
-        <!-- <div class="extra-link">
+
+            </nav>
+            <!-- <div class="extra-link">
 
             <a href="#"><i class="fa fa-shopping-cart"></i></a>
             <a href="#"><i class="fas fa-user-alt"></i></a>
@@ -39,6 +41,7 @@
             </button>
             <?php get_search_form(); ?>
         </div> -->
+        </div>
         </div>
     </header>
 
